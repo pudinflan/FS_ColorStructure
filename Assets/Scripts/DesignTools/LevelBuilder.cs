@@ -38,8 +38,8 @@ namespace SplitSpheres.DesignTools
 
             for (int i = 0; i < divisions; i++)
             {
-                var newPos 
-                Instantiate(destructiblePrefab, newPos, Quaternion.identity);
+               // var newPos 
+               // Instantiate(destructiblePrefab, newPos, Quaternion.identity);
             }
         }
         

@@ -7,6 +7,12 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Gameplay/BallThrowableManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/ThrowablesSystem/Scripts/Throwable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Gameplay/ThrowableBall.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/ThrowablesSystem/Scripts/ThrowableManager.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -14,6 +20,14 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Toolbox/SimpleFSM/StateMachine.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Toolbox/GameEvents/Events/BaseGameEvent.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/DesignTools/LevelBuilder.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Core/Cylinder.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Core/IDamageable.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/ThrowablesSystem/IThrowable.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/ThrowablesSystem/Scripts/Throwable.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Gameplay/BallThrowableManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/ThrowablesSystem/Scripts/ThrowableManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Gameplay/Cylinder.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Gameplay/ThrowableBall.cs" />
       </list>
     </option>
   </component>
@@ -57,7 +71,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1610130869414</updated>
-      <workItem from="1610130873389" duration="4480000" />
+      <workItem from="1610130873389" duration="4651000" />
+      <workItem from="1610206034890" duration="20872000" />
     </task>
     <servers />
   </component>
@@ -67,9 +82,13 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="WindowStateProjectService">
-    <state x="2342" y="192" key="RiderGenerateDialog" timestamp="1610137315802">
+    <state x="2342" y="192" key="RiderGenerateDialog" timestamp="1610208598965">
       <screen x="1920" y="10" width="2560" height="1040" />
     </state>
-    <state x="2342" y="192" key="RiderGenerateDialog/0.0.1920.1040/1920.10.2560.1040@1920.10.2560.1040" timestamp="1610137315802" />
+    <state x="2342" y="192" key="RiderGenerateDialog/0.0.1920.1040/1920.10.2560.1040@1920.10.2560.1040" timestamp="1610208598965" />
+    <state x="2772" y="242" key="run.anything.popup" timestamp="1610232389051">
+      <screen x="1920" y="10" width="2560" height="1040" />
+    </state>
+    <state x="2772" y="242" key="run.anything.popup/0.0.1920.1040/1920.10.2560.1040@1920.10.2560.1040" timestamp="1610232389051" />
   </component>
 </project>
