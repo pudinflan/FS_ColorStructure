@@ -7,6 +7,11 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Framework" t="Include">
+          <e p="ColorManagement" t="Include">
+            <e p="CMColor32.cs" t="Include" />
+            <e p="CmColorCollection.cs" t="Include" />
+            <e p="ColorPicker.cs" t="Include" />
+          </e>
           <e p="GameEvents" t="Include">
             <e p="Events" t="Include">
               <e p="BaseGameEvent.cs" t="Include" />

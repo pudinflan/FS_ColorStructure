@@ -28,12 +28,12 @@ namespace SplitSpheres.Gameplay
         {
             if(!_canThrowNewBall)
                 return;
+            _canThrowNewBall = false;
             
             var ballToThrow = MainThrowable;
             ballToThrow.Throw(targetTransform.position);
             
             UpdateThrowables();
-            _canThrowNewBall = false;
         }
     }
 }

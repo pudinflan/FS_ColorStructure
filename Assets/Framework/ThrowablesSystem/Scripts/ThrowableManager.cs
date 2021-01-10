@@ -75,7 +75,7 @@ namespace SplitSpheres.Framework.ThrowablesSystem.Scripts
         }
         
         /// <summary>
-        /// Swaps Throwables, reSclales the new MainThrowable and saves their objects after being swapped, lastly queues a new Throwable
+        /// Swaps Throwables, reScales the new MainThrowable and saves their objects after being swapped, lastly queues a new Throwable
         /// </summary>
         protected virtual void UpdateThrowables()
         {
