@@ -9,12 +9,13 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Gameplay/BallThrowableManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/ColorManagement/CmColorManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Framework/ThrowablesSystem/Scripts/Throwable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/Utils/RandomInt.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Framework/ColorManagement/CmColor32.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Framework/ColorManagement/CmColorCollection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Gameplay/ThrowableBall.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Framework/ThrowablesSystem/Scripts/ThrowableManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Framework/ColorManagement/ColorPicker.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -27,18 +28,27 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Core/IDamageable.cs" />
         <option value="$PROJECT_DIR$/Assets/Framework/ThrowablesSystem/IThrowable.cs" />
         <option value="$PROJECT_DIR$/Assets/Framework/ThrowablesSystem/Scripts/Throwable.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Gameplay/Cylinder.cs" />
         <option value="$PROJECT_DIR$/Assets/Framework/ThrowablesSystem/Scripts/ThrowableManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Gameplay/BallThrowableManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Gameplay/ThrowableBall.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Gameplay/ColorPicker.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Gameplay/ColorCollection.cs" />
         <option value="$PROJECT_DIR$/Assets/Framework/ColorManagement/Color.cs" />
         <option value="$PROJECT_DIR$/Assets/Framework/ColorManagement/Color32Object.cs" />
         <option value="$PROJECT_DIR$/Assets/Framework/ColorManagement/CMColor32.cs" />
-        <option value="$PROJECT_DIR$/Assets/Framework/ColorManagement/ColorPicker.cs" />
         <option value="$PROJECT_DIR$/Assets/Framework/ColorManagement/ColorCollection.cs" />
         <option value="$PROJECT_DIR$/Assets/Framework/ColorManagement/CmColorCollection.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Gameplay/BallThrowableManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameEvents/CmColor32Listener.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameEvents/UnityCmColor32Event.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameEvents/CmColor32Event.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/ColorManagement/CmColor32.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameEvents/CmColor32EventRaiser.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/ColorManagement/ColorPicker.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/ColorManagement/CmColorManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/ColorManagement/ICmColorObject.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Gameplay/ThrowableBall.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/ColorManagement/ICmColor32Object.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Gameplay/Cylinder.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/Utils/RandomInt.cs" />
       </list>
     </option>
   </component>
@@ -84,7 +94,7 @@
       <updated>1610130869414</updated>
       <workItem from="1610130873389" duration="4651000" />
       <workItem from="1610206034890" duration="21568000" />
-      <workItem from="1610297719926" duration="3441000" />
+      <workItem from="1610297719926" duration="10710000" />
     </task>
     <servers />
   </component>

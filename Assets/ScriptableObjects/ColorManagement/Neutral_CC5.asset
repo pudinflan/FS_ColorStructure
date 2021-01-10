@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d09bf7e2d72f67d499e89997fa80a626, type: 3}
-  m_Name: Neutral_CC6
+  m_Name: Neutral_CC5
   m_EditorClassIdentifier: 
   colorCollectionArray:
   - color32:
@@ -21,13 +21,10 @@ MonoBehaviour:
       rgba: 4292581428
   - color32:
       serializedVersion: 2
-      rgba: 4293224128
+      rgba: 4290196826
   - color32:
       serializedVersion: 2
       rgba: 4282141927
   - color32:
       serializedVersion: 2
       rgba: 4279223537
-  - color32:
-      serializedVersion: 2
-      rgba: 4290196826

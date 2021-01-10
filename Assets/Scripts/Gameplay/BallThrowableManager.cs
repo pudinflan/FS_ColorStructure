@@ -20,20 +20,21 @@ namespace SplitSpheres.Gameplay
         //Called on the script GameObject via VoidListener component
         public void OnSphereArriveCylinder()
         {
-            _canThrowNewBall = true;
             ThrowablePool.Despawn(LastThrowable.gameObject);
+            _canThrowNewBall = true;
         }
         
         public override void ThrowThrowable(Transform targetTransform)
         {
             if(!_canThrowNewBall)
                 return;
-            _canThrowNewBall = false;
+           
             
             var ballToThrow = MainThrowable;
             ballToThrow.Throw(targetTransform.position);
             
             UpdateThrowables();
+            _canThrowNewBall = false;
         }
     }
 }

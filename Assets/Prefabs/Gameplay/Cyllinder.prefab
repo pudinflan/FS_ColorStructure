@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 5198159554422401916}
   - component: {fileID: 908606129601620814}
   - component: {fileID: 7291032481807282900}
-  - component: {fileID: 3394918267654767706}
   m_Layer: 0
   m_Name: Cyllinder
   m_TagString: Untagged
@@ -128,6 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b059f6a0c196123458ece9a5a31b2b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colorEvent: {fileID: 11400000, guid: 0f2dba020a811394389ad844a3ba5fc8, type: 2}
 --- !u!114 &7291032481807282900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,13 +146,13 @@ MonoBehaviour:
   onSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SplitSpheres.Gameplay.BallThrowableManager, Assembly-CSharp
-        m_MethodName: ThrowBall
-        m_Mode: 2
+      - m_Target: {fileID: 908606129601620814}
+        m_TargetAssemblyTypeName: SplitSpheres.Gameplay.Cylinder, Assembly-CSharp
+        m_MethodName: OnSelected
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 6964999173385853199}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -168,19 +168,3 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   isSelected: 0
---- !u!114 &3394918267654767706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5490589908764554601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2baa936f016a9a14e86ac8ea42211f4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AutoGetDefaultColor: 1
-  DefaultColor: {r: 1, g: 1, b: 1, a: 1}
-  SelectedColor: {r: 0, g: 1, b: 0, a: 1}
-  CloneMaterials: 1

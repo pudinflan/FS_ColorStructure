@@ -10,7 +10,7 @@
           <e p="ColorManagement" t="Include">
             <e p="CMColor32.cs" t="Include" />
             <e p="CmColorCollection.cs" t="Include" />
-            <e p="ColorPicker.cs" t="Include" />
+            <e p="CmColorManager.cs" t="Include" />
           </e>
           <e p="GameEvents" t="Include">
             <e p="Events" t="Include">
@@ -55,6 +55,9 @@
               <e p="ThrowableManager.cs" t="Include" />
             </e>
           </e>
+          <e p="Utils" t="Include">
+            <e p="RandomInt.cs" t="Include" />
+          </e>
         </e>
         <e p="Scripts" t="Include">
           <e p="Core" t="Include">
@@ -62,6 +65,12 @@
           </e>
           <e p="DesignTools" t="Include">
             <e p="LevelBuilder.cs" t="Include" />
+          </e>
+          <e p="GameEvents" t="Include">
+            <e p="CmColor32Event.cs" t="Include" />
+            <e p="CmColor32EventRaiser.cs" t="Include" />
+            <e p="CmColor32Listener.cs" t="Include" />
+            <e p="UnityCmColor32Event.cs" t="Include" />
           </e>
           <e p="Gameplay" t="Include">
             <e p="BallThrowableManager.cs" t="Include" />
