@@ -15,7 +15,7 @@ MonoBehaviour:
   levelObject: {fileID: 908298110197351646, guid: a563685d5f6432146af7175fcbf485c3,
     type: 3}
   levelType: 2
-  baseNumberOfBalls: 26
+  baseNumberOfBalls: 166
   colorCollection:
   - {fileID: 11400000, guid: 832f2b35db47ff9419da7ec35f5b6c7d, type: 2}
   - {fileID: 11400000, guid: 34fc5b8995e768648958b48e80779eb3, type: 2}

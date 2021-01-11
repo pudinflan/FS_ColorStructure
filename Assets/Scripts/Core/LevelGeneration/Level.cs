@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace SplitSpheres.Core.LevelGeneration
 {
-    public class Level
+    public class Level 
     {
         /// <summary>
         /// LevelObject Associated withThisLevel

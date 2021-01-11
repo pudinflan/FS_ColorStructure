@@ -6,19 +6,17 @@ namespace SplitSpheres.Core.GameStates
 {
     public class LevelState : MonoBehaviour, IState
     {
-        private Level initializedLevel;
+        private PreparedLevel receivedPreparedLevel;
         
-        public  LevelState(Level levelToInitialize)
+        public  LevelState(PreparedLevel preparedLevel)
         {
-            initializedLevel = levelToInitialize;
+            receivedPreparedLevel = preparedLevel;
         }
         
         public void Enter()
         {
-            //TODO: Romove Instantiate and chave to a load ObjectPool in GameManager
-            GameObject.Instantiate(initializedLevel.LevelObject);
-            
-            Debug.Log(initializedLevel.numberOfBalls);
+            //ActivateLevelObject
+            receivedPreparedLevel.PreparedLevelGOInstance.SetActive(true);
         }
 
         public void Execute()

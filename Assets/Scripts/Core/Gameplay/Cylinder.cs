@@ -8,28 +8,32 @@ namespace SplitSpheres.Core.Gameplay
     [RequireComponent(typeof(LeanSelectable))]
     public class Cylinder : MonoBehaviour
     {
+        public CmColor32MaterialAssigner colorMatAssigner;
+
         [SerializeField] private Vector3Event vector3Event;
-        
+
         private CmColor32 _assignedCmColor32;
         private Collider[] _overlapResults = new Collider[10];
-        
+
         public CmColor32 AssignedCmColor32
         {
             get => _assignedCmColor32;
             set => _assignedCmColor32 = value;
         }
-        
+
         /// <summary>
         /// Raises the Onselect event
         /// </summary>
         public void OnSelected()
         {
-       
             //Sends current position to Vector3EventListeners
             vector3Event.Raise(this.transform.position);
         }
 
-        
+        /// <summary>
+        /// When called creates a Overlap Sphere to see if there are cylinders with the same color in the vicinity
+        /// If so it chains to Other Cyls and does effects
+        /// </summary>
         public void ProcessBallCollision()
         {
             //checks if there are same color cylinders in the vicinity
@@ -51,22 +55,5 @@ namespace SplitSpheres.Core.Gameplay
                 Destroy(this.gameObject);
             }
         }
-
-    
-        //TODO: REMOVE THIS REGION WITH A COLOR ASSIGN MANAGER ON LEVEL CREATION
-        #region DEBUG_TEMP
-
-        [Header("DEBUG ONLY TEMP")] public CmColor32 TempoassignedColor;
-        private void Start()
-        {
-            AssignedCmColor32 = TempoassignedColor;
-        }
-        
-        
-        #endregion
-
-        
     }
-
-   
 }
