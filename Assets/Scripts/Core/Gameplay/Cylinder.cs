@@ -3,7 +3,7 @@ using SplitSpheres.Framework.ColorManagement;
 using SplitSpheres.Framework.GameEvents.Events;
 using UnityEngine;
 
-namespace SplitSpheres.Gameplay
+namespace SplitSpheres.Core.Gameplay
 {
     [RequireComponent(typeof(LeanSelectable))]
     public class Cylinder : MonoBehaviour
@@ -18,7 +18,18 @@ namespace SplitSpheres.Gameplay
             get => _assignedCmColor32;
             set => _assignedCmColor32 = value;
         }
+        
+        /// <summary>
+        /// Raises the Onselect event
+        /// </summary>
+        public void OnSelected()
+        {
+       
+            //Sends current position to Vector3EventListeners
+            vector3Event.Raise(this.transform.position);
+        }
 
+        
         public void ProcessBallCollision()
         {
             //checks if there are same color cylinders in the vicinity
@@ -32,7 +43,7 @@ namespace SplitSpheres.Gameplay
             }
         }
 
-        public void ChainColorCollision(CmColor32 assignedCmColor32)
+        private void ChainColorCollision(CmColor32 assignedCmColor32)
         {
             if (_assignedCmColor32.CompareColor(assignedCmColor32))
             {
@@ -41,16 +52,6 @@ namespace SplitSpheres.Gameplay
             }
         }
 
-        /// <summary>
-        /// Raises the Onselect event
-        /// </summary>
-        public void OnSelected()
-        {
-       
-            //Sends current position to Vector3EventListeners
-            vector3Event.Raise(this.transform.position);
-        }
-    
     
         //TODO: REMOVE THIS REGION WITH A COLOR ASSIGN MANAGER ON LEVEL CREATION
         #region DEBUG_TEMP

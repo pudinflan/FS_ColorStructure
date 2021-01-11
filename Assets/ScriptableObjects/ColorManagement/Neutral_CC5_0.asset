@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d09bf7e2d72f67d499e89997fa80a626, type: 3}
-  m_Name: Neutral_CC5
+  m_Name: Neutral_CC5_0
   m_EditorClassIdentifier: 
   colorCollectionArray:
   - color32:

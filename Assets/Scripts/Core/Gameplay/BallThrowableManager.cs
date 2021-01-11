@@ -1,11 +1,8 @@
-using System;
-using SplitSpheres.Framework.ColorManagement;
-using SplitSpheres.Framework.GameEvents.Events;
 using SplitSpheres.Framework.GameEvents.Listeners;
 using SplitSpheres.Framework.ThrowablesSystem.Scripts;
 using UnityEngine;
 
-namespace SplitSpheres.Gameplay
+namespace SplitSpheres.Core.Gameplay
 {
     [RequireComponent(typeof(VoidListener), typeof(Vector3Listener))]
     public class BallThrowableManager : ThrowableManager 

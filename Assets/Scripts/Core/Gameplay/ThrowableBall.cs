@@ -4,8 +4,7 @@ using SplitSpheres.Framework.GameEvents.Events;
 using SplitSpheres.Framework.ThrowablesSystem.Scripts;
 using UnityEngine;
 
-
-namespace SplitSpheres.Gameplay
+namespace SplitSpheres.Core.Gameplay
 {
     public class ThrowableBall : Throwable, IPoolable
     {
