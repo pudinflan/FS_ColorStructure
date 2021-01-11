@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7291032481807282900}
   m_Layer: 0
   m_Name: Cyllinder
-  m_TagString: Untagged
+  m_TagString: Cylinder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,7 +127,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b059f6a0c196123458ece9a5a31b2b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorEvent: {fileID: 11400000, guid: 0f2dba020a811394389ad844a3ba5fc8, type: 2}
+  vector3Event: {fileID: 11400000, guid: afd4159aef43b9f40b6bf1ef69dd8637, type: 2}
+  TempoassignedColor:
+    color32:
+      serializedVersion: 2
+      rgba: 4283367679
 --- !u!114 &7291032481807282900
 MonoBehaviour:
   m_ObjectHideFlags: 0

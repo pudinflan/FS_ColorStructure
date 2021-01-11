@@ -11,6 +11,7 @@ namespace SplitSpheres.Framework.ThrowablesSystem.Scripts
     [RequireComponent(typeof(LeanGameObjectPool))]
     public class ThrowableManager : MonoBehaviour
     {
+      
         /// <summary>
         /// The number of ThrowableObjects to load into ThrowablePool
         /// </summary>
@@ -49,10 +50,10 @@ namespace SplitSpheres.Framework.ThrowablesSystem.Scripts
         /// Removes an object from the DisplaySpots and Throws it towards a target
         /// Then updates the Throwables accordingly
         /// </summary>
-        /// <param name="targetTransform">The target transform of Throwable</param>
-        public virtual void ThrowThrowable(Transform targetTransform)
+        /// <param name="targetPosition">The target position of Throwable</param>
+        public virtual void ThrowThrowable(Vector3 targetPosition)
         {
-            MainThrowable.Throw(targetTransform.position);
+            MainThrowable.Throw(targetPosition);
             UpdateThrowables();
         }
 

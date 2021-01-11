@@ -11,6 +11,7 @@ namespace SplitSpheres.Framework.ColorManagement
         /// </summary>
         public Color32 color32;
 
+   
         /// <summary>
         /// Compare if an instance of this CmColor32 is Equal to another.
         /// </summary>

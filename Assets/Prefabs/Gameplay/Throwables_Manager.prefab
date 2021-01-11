@@ -71,7 +71,8 @@ GameObject:
   - component: {fileID: 7764893121978267252}
   - component: {fileID: 10450665}
   - component: {fileID: 7660703108689084638}
-  - component: {fileID: 7693716908475929743}
+  - component: {fileID: 8671851528003571336}
+  - component: {fileID: 580198106193787166}
   m_Layer: 0
   m_Name: Throwables_Manager
   m_TagString: Untagged
@@ -135,7 +136,7 @@ MonoBehaviour:
   numberOfThrowables: 10
   mainThrowableDisplaySpot: {fileID: 7764893120753537525}
   queuedThrowableDisplaySpot: {fileID: 7764893121032670247}
---- !u!114 &7693716908475929743
+--- !u!114 &8671851528003571336
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a2fc3b9c16f4cc489aaeb061d35df1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 5833c0eee1c9c6d4989afdf6d0b4b4b1, type: 2}
+  gameEvent: {fileID: 11400000, guid: 199cbe803e944bd48ac34d36f11b741b, type: 2}
   unityEventResponse:
     m_PersistentCalls:
       m_Calls:
@@ -163,4 +164,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  notes: Has the ball arrived at the position?
+  notes: Executes Ball Swap if current ball Arrived at position
+--- !u!114 &580198106193787166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7764893121978267259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 403c67bf7fa20e64b99d6d5952c54c37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: afd4159aef43b9f40b6bf1ef69dd8637, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7660703108689084638}
+        m_TargetAssemblyTypeName: SplitSpheres.Gameplay.BallThrowableManager, Assembly-CSharp
+        m_MethodName: ThrowRequest
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  notes: Throws a Ball at a Position

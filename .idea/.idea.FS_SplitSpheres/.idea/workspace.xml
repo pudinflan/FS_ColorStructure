@@ -9,13 +9,16 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Gameplay/BallThrowableManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Framework/ColorManagement/CmColorManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/GameEvents/Raisers/Vector3EventRaiser.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Framework/ThrowablesSystem/Scripts/Throwable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/ThrowablesSystem/Scripts/ThrowableManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/ColorManagement/CmColorManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/GameEvents/UnityEvents/UnityVector3Event.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Framework/GameEvents/Events/Vector3Event.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Framework/Utils/RandomInt.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Framework/ColorManagement/CmColor32.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Framework/ColorManagement/CmColorCollection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Gameplay/ThrowableBall.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Framework/ThrowablesSystem/Scripts/ThrowableManager.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -27,8 +30,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Core/Cylinder.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Core/IDamageable.cs" />
         <option value="$PROJECT_DIR$/Assets/Framework/ThrowablesSystem/IThrowable.cs" />
-        <option value="$PROJECT_DIR$/Assets/Framework/ThrowablesSystem/Scripts/Throwable.cs" />
-        <option value="$PROJECT_DIR$/Assets/Framework/ThrowablesSystem/Scripts/ThrowableManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Gameplay/ColorPicker.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Gameplay/ColorCollection.cs" />
         <option value="$PROJECT_DIR$/Assets/Framework/ColorManagement/Color.cs" />
@@ -36,19 +37,26 @@
         <option value="$PROJECT_DIR$/Assets/Framework/ColorManagement/CMColor32.cs" />
         <option value="$PROJECT_DIR$/Assets/Framework/ColorManagement/ColorCollection.cs" />
         <option value="$PROJECT_DIR$/Assets/Framework/ColorManagement/CmColorCollection.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Gameplay/BallThrowableManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameEvents/CmColor32Listener.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameEvents/UnityCmColor32Event.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameEvents/CmColor32Event.cs" />
-        <option value="$PROJECT_DIR$/Assets/Framework/ColorManagement/CmColor32.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameEvents/CmColor32EventRaiser.cs" />
         <option value="$PROJECT_DIR$/Assets/Framework/ColorManagement/ColorPicker.cs" />
         <option value="$PROJECT_DIR$/Assets/Framework/ColorManagement/CmColorManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Framework/ColorManagement/ICmColorObject.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Gameplay/ThrowableBall.cs" />
         <option value="$PROJECT_DIR$/Assets/Framework/ColorManagement/ICmColor32Object.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Gameplay/Cylinder.cs" />
         <option value="$PROJECT_DIR$/Assets/Framework/Utils/RandomInt.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/ThrowablesSystem/Scripts/Throwable.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/ColorManagement/CmColor32.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameEvents/CmColor32Event.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/GameEvents/Events/TransformEvent.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/GameEvents/Events/Vector3Event.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/GameEvents/Listeners/Vector3Listener.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/GameEvents/Raisers/Vector3EventRaiser.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/GameEvents/UnityEvents/UnityVector3Event.cs" />
+        <option value="$PROJECT_DIR$/Assets/Framework/ThrowablesSystem/Scripts/ThrowableManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Gameplay/BallThrowableManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Gameplay/ThrowableBall.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Gameplay/Cylinder.cs" />
       </list>
     </option>
   </component>
@@ -94,7 +102,7 @@
       <updated>1610130869414</updated>
       <workItem from="1610130873389" duration="4651000" />
       <workItem from="1610206034890" duration="21568000" />
-      <workItem from="1610297719926" duration="10710000" />
+      <workItem from="1610297719926" duration="23947000" />
     </task>
     <servers />
   </component>
@@ -112,5 +120,9 @@
       <screen x="1920" y="10" width="2560" height="1040" />
     </state>
     <state x="2772" y="242" key="run.anything.popup/0.0.1920.1040/1920.10.2560.1040@1920.10.2560.1040" timestamp="1610232389051" />
+    <state x="2779" y="15" width="840" height="1034" key="search.everywhere.popup" timestamp="1610321146043">
+      <screen x="1920" y="10" width="2560" height="1040" />
+    </state>
+    <state x="2779" y="15" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1040/1920.10.2560.1040@1920.10.2560.1040" timestamp="1610321146043" />
   </component>
 </project>

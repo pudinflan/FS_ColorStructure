@@ -9,12 +9,6 @@ namespace SplitSpheres.GameEvents
     public class CmColor32Event : BaseGameEvent<CmColor32>
     {
         public void Raise() => Raise(new CmColor32());
-
-        
-        IEnumerator RaiseRoutine(float _delay)
-        {
-            yield return new WaitForSeconds(_delay);
-            Raise();
-        }
+     
     }
 }

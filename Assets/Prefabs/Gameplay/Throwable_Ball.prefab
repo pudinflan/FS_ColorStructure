@@ -92,7 +92,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2513215375908330050}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.4
@@ -110,7 +110,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 50
-  onArrivalEvent: {fileID: 11400000, guid: 5833c0eee1c9c6d4989afdf6d0b4b4b1, type: 2}
+  onArrivalEvent: {fileID: 11400000, guid: 199cbe803e944bd48ac34d36f11b741b, type: 2}
+  _assignedCmColor32:
+    color32:
+      serializedVersion: 2
+      rgba: 4278303998
 --- !u!54 &-4116483910308844935
 Rigidbody:
   m_ObjectHideFlags: 0

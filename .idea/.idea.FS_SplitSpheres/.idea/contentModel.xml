@@ -6,6 +6,14 @@
     <e p="C:\Users\Tatauga\Documents\GitHub\FS_SplitSpheres" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="_TEMPORARY" t="Include">
+          <e p="GameEvents" t="Include">
+            <e p="CmColor32Event.cs" t="Include" />
+            <e p="CmColor32EventRaiser.cs" t="Include" />
+            <e p="CmColor32Listener.cs" t="Include" />
+            <e p="UnityCmColor32Event.cs" t="Include" />
+          </e>
+        </e>
         <e p="Framework" t="Include">
           <e p="ColorManagement" t="Include">
             <e p="CMColor32.cs" t="Include" />
@@ -18,6 +26,7 @@
               <e p="BoolEvent.cs" t="Include" />
               <e p="IntEvent.cs" t="Include" />
               <e p="StringEvent.cs" t="Include" />
+              <e p="Vector3Event.cs" t="Include" />
               <e p="VoidEvent.cs" t="Include" />
             </e>
             <e p="Listeners" t="Include">
@@ -26,6 +35,7 @@
               <e p="IGameEventListener.cs" t="Include" />
               <e p="IntListener.cs" t="Include" />
               <e p="StringListener.cs" t="Include" />
+              <e p="Vector3Listener.cs" t="Include" />
               <e p="VoidListener.cs" t="Include" />
             </e>
             <e p="Raisers" t="Include">
@@ -33,6 +43,7 @@
               <e p="EventRaiser.cs" t="Include" />
               <e p="IntEventRaiser.cs" t="Include" />
               <e p="StringEventRaiser.cs" t="Include" />
+              <e p="Vector3EventRaiser.cs" t="Include" />
               <e p="VoidEventRaiser.cs" t="Include" />
             </e>
             <e p="Types" t="Include">
@@ -42,12 +53,16 @@
               <e p="UnityBoolEvent.cs" t="Include" />
               <e p="UnityIntEvent.cs" t="Include" />
               <e p="UnityStringEvent.cs" t="Include" />
+              <e p="UnityVector3Event.cs" t="Include" />
               <e p="UnityVoidEvent.cs" t="Include" />
             </e>
           </e>
           <e p="SimpleFSM" t="Include">
             <e p="IState.cs" t="Include" />
             <e p="StateMachine.cs" t="Include" />
+          </e>
+          <e p="Singleton" t="Include">
+            <e p="Singleton.cs" t="Include" />
           </e>
           <e p="ThrowablesSystem" t="Include">
             <e p="Scripts" t="Include">
@@ -65,12 +80,6 @@
           </e>
           <e p="DesignTools" t="Include">
             <e p="LevelBuilder.cs" t="Include" />
-          </e>
-          <e p="GameEvents" t="Include">
-            <e p="CmColor32Event.cs" t="Include" />
-            <e p="CmColor32EventRaiser.cs" t="Include" />
-            <e p="CmColor32Listener.cs" t="Include" />
-            <e p="UnityCmColor32Event.cs" t="Include" />
           </e>
           <e p="Gameplay" t="Include">
             <e p="BallThrowableManager.cs" t="Include" />
