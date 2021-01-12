@@ -1,3 +1,4 @@
+using System;
 using Lean.Touch;
 using SplitSpheres.Framework.ColorManagement;
 using SplitSpheres.Framework.GameEvents.Events;
@@ -8,17 +9,19 @@ namespace SplitSpheres.Core.Gameplay
     [RequireComponent(typeof(LeanSelectable))]
     public class Cylinder : MonoBehaviour
     {
-        public CmColor32MaterialAssigner colorMatAssigner;
-
+        [Header("Color Management")]
+        [SerializeField] private MeshRenderer mr;
+        [SerializeField] private CmColor32 assignedCmColor32;
+        
+        [Header("Events")]
         [SerializeField] private Vector3Event vector3Event;
-
-        private CmColor32 _assignedCmColor32;
-        private Collider[] _overlapResults = new Collider[10];
-
-        public CmColor32 AssignedCmColor32
+        
+        public CmColor32 AssignedCmColor32 => assignedCmColor32;
+        
+        public void AssignCmColor32(CmColor32 cmColor32ToAssign)
         {
-            get => _assignedCmColor32;
-            set => _assignedCmColor32 = value;
+            assignedCmColor32 = cmColor32ToAssign;
+            mr.material = cmColor32ToAssign.cmColor32Material;
         }
 
         /// <summary>
@@ -42,18 +45,34 @@ namespace SplitSpheres.Core.Gameplay
             {
                 if (hitCollider.CompareTag("Cylinder"))
                 {
-                    hitCollider.GetComponent<Cylinder>().ChainColorCollision(_assignedCmColor32);
+                 hitCollider.GetComponent<Cylinder>().ChainColorCollision(AssignedCmColor32);
                 }
             }
         }
 
         private void ChainColorCollision(CmColor32 assignedCmColor32)
         {
-            if (_assignedCmColor32.CompareColor(assignedCmColor32))
+            if (this.AssignedCmColor32.CompareColor(assignedCmColor32.colorTag))
             {
                 //TODO: CHANGE TO DEACTIVATE POOL AND SHOW VFX
                 Destroy(this.gameObject);
             }
         }
+
+        /*private void OnCollisionEnter(Collision other)
+        {
+            if (!other.gameObject.CompareTag("Cylinder")) return;
+            
+            // creates joint
+            var joint = gameObject.AddComponent<FixedJoint>();
+            joint.breakForce = 5000;
+            
+            // sets joint position to point of contact
+            joint.anchor = other.contacts[0].point; 
+            // conects the joint to the other object
+            joint.connectedBody = other.contacts[0].otherCollider.transform.GetComponentInParent<Rigidbody>(); 
+            // Stops objects from continuing to collide and creating more joints
+            joint.enableCollision = false;
+        }*/
     }
 }

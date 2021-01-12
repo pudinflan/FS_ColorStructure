@@ -15,16 +15,26 @@ MonoBehaviour:
   colorCollectionArray:
   - color32:
       serializedVersion: 2
-      rgba: 4289541312
+      rgba: 4293224128
+    colorTag: pink
+    cmColor32Material: {fileID: 2100000, guid: c3e304af075bb784bbf03ce48be34887, type: 2}
   - color32:
       serializedVersion: 2
       rgba: 4292581428
+    colorTag: blue
+    cmColor32Material: {fileID: 2100000, guid: e31cd0138b4750441a675c388256521c, type: 2}
   - color32:
       serializedVersion: 2
       rgba: 4290196826
+    colorTag: purple
+    cmColor32Material: {fileID: 2100000, guid: 8586cd772f598c547bc80c8b26e96cf4, type: 2}
   - color32:
       serializedVersion: 2
       rgba: 4282141927
+    colorTag: red
+    cmColor32Material: {fileID: 2100000, guid: c4470937a0b0c574d9ed99392659befa, type: 2}
   - color32:
       serializedVersion: 2
       rgba: 4279223537
+    colorTag: yellow
+    cmColor32Material: {fileID: 2100000, guid: 1a99f70db7e71604a994d8ba32af1969, type: 2}

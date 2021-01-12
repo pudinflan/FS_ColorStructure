@@ -110,11 +110,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 50
-  onArrivalEvent: {fileID: 11400000, guid: 199cbe803e944bd48ac34d36f11b741b, type: 2}
-  _assignedCmColor32:
+  mr: {fileID: 7984963082776373397}
+  assignedCmColor32:
     color32:
       serializedVersion: 2
-      rgba: 4278303998
+      rgba: 4282141927
+    colorTag: red
+    cmColor32Material: {fileID: 2100000, guid: 738f118aa214360489366338953cfd32, type: 2}
+  onArrivalEvent: {fileID: 11400000, guid: 199cbe803e944bd48ac34d36f11b741b, type: 2}
 --- !u!54 &-4116483910308844935
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -843,6 +843,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1806838102383309405, guid: c801ebd6ed30e1d4aa05c9733cee680b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3418481009138524081, guid: c801ebd6ed30e1d4aa05c9733cee680b,
         type: 3}
       propertyPath: ballThrowableManager

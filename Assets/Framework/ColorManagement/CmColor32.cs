@@ -11,18 +11,24 @@ namespace SplitSpheres.Framework.ColorManagement
         /// </summary>
         public Color32 color32;
 
+        /// <summary>
+        /// The name of the Color used For Comparison
+        /// </summary>
+        public string colorTag;
+
+        /// <summary>
+        /// The material to assign to Other objects
+        /// </summary>
+        public Material cmColor32Material;
    
         /// <summary>
-        /// Compare if an instance of this CmColor32 is Equal to another.
+        /// Compares a color tag with this CmColor32 tag
         /// </summary>
-        /// <param name="otherCmColor32"> The other color to Compare with ours</param>
-        /// <returns>bool: comparision between colors</returns>
-        public bool CompareColor(CmColor32 otherCmColor32)
+        /// <param name="otherColorTag">other tag to compare to</param>
+        /// <returns></returns>
+        public bool CompareColor(string otherColorTag)
         {
-            return otherCmColor32.color32.r == color32.r &&
-                   otherCmColor32.color32.g == color32.g &&
-                   otherCmColor32.color32.b == color32.b &&
-                   otherCmColor32.color32.a == color32.a;
+            return colorTag == otherColorTag;
         }
     }
 }

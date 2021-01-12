@@ -60,7 +60,7 @@ namespace SplitSpheres.Framework.ThrowablesSystem.Scripts
         /// <summary>
         /// Initializes ThrowablePool with the set numberOfThrowables
         /// </summary>
-        protected virtual void Initialize()
+        public virtual void Initialize()
         {
             ThrowablePool = GetComponent<LeanGameObjectPool>();
             
@@ -107,7 +107,7 @@ namespace SplitSpheres.Framework.ThrowablesSystem.Scripts
         /// </summary>
         /// <param name="throwSpot">Where on world will the Throwable Spawn and be child of</param>
         /// <returns></returns>
-        private Throwable LoadThrowableIntoSpot(Transform throwSpot)
+        protected virtual Throwable LoadThrowableIntoSpot(Transform throwSpot)
         {
             return ThrowablePool.Spawn(throwSpot.position, Quaternion.identity, throwSpot)
                 .GetComponent<Throwable>();

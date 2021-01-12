@@ -94,10 +94,8 @@ namespace SplitSpheres.Core.Gameplay
                 {
                     foreach (var cyl in levelObjectRow.rowOfCylinders)
                     {
-                        cyl.AssignedCmColor32 =
-                            generatedLevel.cmColor32S[RandomInt.GenerateNumber(0, generatedLevel.cmColor32S.Length)];
-
-                       // cyl.TempoassignedColor = cyl.AssignedCmColor32;
+                        cyl.AssignCmColor32(
+                            generatedLevel.cmColor32S[RandomInt.GenerateNumber(0, generatedLevel.cmColor32S.Length)]);
                     }
                 }
             }
@@ -116,7 +114,7 @@ namespace SplitSpheres.Core.Gameplay
 
 
             gameStateMachine = new StateMachine();
-            gameStateMachine.ChangeState(new LevelState(PrepareLevel()));
+            gameStateMachine.ChangeState(new LevelState(PrepareLevel(), ballThrowableManager));
         }
 
         private PreparedLevel PrepareLevel()

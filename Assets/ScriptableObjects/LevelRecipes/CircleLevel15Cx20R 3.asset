@@ -18,4 +18,4 @@ MonoBehaviour:
   baseNumberOfBalls: 12
   colorCollection:
   - {fileID: 11400000, guid: 832f2b35db47ff9419da7ec35f5b6c7d, type: 2}
-  - {fileID: 11400000, guid: 34fc5b8995e768648958b48e80779eb3, type: 2}
+  - {fileID: 11400000, guid: d58ee762205baea49b5b51805fed9df2, type: 2}

@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 5198159554422401916}
   - component: {fileID: 908606129601620814}
   - component: {fileID: 7291032481807282900}
-  - component: {fileID: 182924829769373268}
   m_Layer: 0
   m_Name: Cyllinder
   m_TagString: Cylinder
@@ -98,7 +97,7 @@ Rigidbody:
   m_Drag: 0.5
   m_AngularDrag: 0.03
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -128,7 +127,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b059f6a0c196123458ece9a5a31b2b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorMatAssigner: {fileID: 182924829769373268}
+  mr: {fileID: 1742469487771371823}
+  assignedCmColor32:
+    color32:
+      serializedVersion: 2
+      rgba: 4282141927
+    colorTag: red
+    cmColor32Material: {fileID: 2100000, guid: c4470937a0b0c574d9ed99392659befa, type: 2}
   vector3Event: {fileID: 11400000, guid: afd4159aef43b9f40b6bf1ef69dd8637, type: 2}
 --- !u!114 &7291032481807282900
 MonoBehaviour:
@@ -170,22 +175,3 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   isSelected: 0
---- !u!114 &182924829769373268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5490589908764554601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58fc911d1cfc67042a660fd18c4d9c0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  possibleMaterials:
-  - {fileID: 2100000, guid: e31cd0138b4750441a675c388256521c, type: 2}
-  - {fileID: 2100000, guid: b78528be5c8f7d44b9ddecd3cb1e9325, type: 2}
-  - {fileID: 2100000, guid: c3e304af075bb784bbf03ce48be34887, type: 2}
-  - {fileID: 2100000, guid: 8586cd772f598c547bc80c8b26e96cf4, type: 2}
-  - {fileID: 2100000, guid: c4470937a0b0c574d9ed99392659befa, type: 2}
-  - {fileID: 2100000, guid: 1a99f70db7e71604a994d8ba32af1969, type: 2}

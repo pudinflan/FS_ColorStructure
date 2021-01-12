@@ -8,15 +8,19 @@ namespace SplitSpheres.Core.Gameplay
 {
     public class ThrowableBall : Throwable, IPoolable
     {
+        [Header("Color Management")]
+        [SerializeField] private MeshRenderer mr;
+        [SerializeField] private CmColor32 assignedCmColor32;
         
+        [Header(("Events"))]
         [SerializeField] private VoidEvent onArrivalEvent;
 
-        [SerializeField] private CmColor32 _assignedCmColor32;
-
-        public CmColor32 AssignedCmColor32
+        public CmColor32 AssignedCmColor32 => assignedCmColor32;
+        
+        public void AssignCmColor32(CmColor32 cmColor32ToAssign)
         {
-            get => _assignedCmColor32;
-            set => _assignedCmColor32 = value;
+            assignedCmColor32 = cmColor32ToAssign;
+            mr.material = cmColor32ToAssign.cmColor32Material;
         }
 
         public override void OnArrival()
@@ -31,7 +35,7 @@ namespace SplitSpheres.Core.Gameplay
             
             var cyl = other.gameObject.GetComponent<Cylinder>();
 
-            if (_assignedCmColor32.CompareColor(cyl.AssignedCmColor32))
+            if (assignedCmColor32.CompareColor(cyl.AssignedCmColor32.colorTag))
             {
                 cyl.ProcessBallCollision();
             }
