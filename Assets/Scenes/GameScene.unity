@@ -275,6 +275,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -348,6 +349,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 3, y: 0, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 698295c258928444d8f28e42a44c11d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
 --- !u!1 &1471711688
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,34 +857,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 1806838102383309405, guid: c801ebd6ed30e1d4aa05c9733cee680b,
+    - target: {fileID: 3418481009138524081, guid: c801ebd6ed30e1d4aa05c9733cee680b,
         type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: cameraManager
+      value: 
+      objectReference: {fileID: 963194229}
     - target: {fileID: 3418481009138524081, guid: c801ebd6ed30e1d4aa05c9733cee680b,
         type: 3}
       propertyPath: ballThrowableManager
       value: 
       objectReference: {fileID: 342123327}
-    - target: {fileID: 3418481009138524081, guid: c801ebd6ed30e1d4aa05c9733cee680b,
-        type: 3}
-      propertyPath: levelRecipes.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: 45feb78e10029e2489f424967d8c8eaa,
-        type: 2}
-    - target: {fileID: 3418481009138524081, guid: c801ebd6ed30e1d4aa05c9733cee680b,
-        type: 3}
-      propertyPath: levelRecipes.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: 429f71e0b26b4b1458370146a272ab5e,
-        type: 2}
-    - target: {fileID: 3418481009138524081, guid: c801ebd6ed30e1d4aa05c9733cee680b,
-        type: 3}
-      propertyPath: levelRecipes.Array.data[4]
-      value: 
-      objectReference: {fileID: 11400000, guid: 45feb78e10029e2489f424967d8c8eaa,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c801ebd6ed30e1d4aa05c9733cee680b, type: 3}
 --- !u!1001 &7764893121965746716

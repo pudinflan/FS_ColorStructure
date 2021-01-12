@@ -9,26 +9,56 @@ namespace SplitSpheres.Core.Gameplay
     [RequireComponent(typeof(LeanSelectable))]
     public class Cylinder : MonoBehaviour
     {
+        [Header("ActivationManagement")] 
+        [SerializeField] private Rigidbody rb;
+        [SerializeField] private Material deactivatedMaterial;
+        
         [Header("Color Management")]
         [SerializeField] private MeshRenderer mr;
         [SerializeField] private CmColor32 assignedCmColor32;
         
         [Header("Events")]
         [SerializeField] private Vector3Event vector3Event;
-        
+
         public CmColor32 AssignedCmColor32 => assignedCmColor32;
+
+        private bool _canBeSelected;
         
+        private void Awake()
+        {
+            _canBeSelected = false;
+        }
+
         public void AssignCmColor32(CmColor32 cmColor32ToAssign)
         {
             assignedCmColor32 = cmColor32ToAssign;
             mr.material = cmColor32ToAssign.cmColor32Material;
         }
 
+        public void ActivateCylinder()
+        {
+            mr.material = assignedCmColor32.cmColor32Material;
+
+            _canBeSelected = true;
+            rb.isKinematic = false;
+        }
+
+        public void DeactivateCylinder()
+        {
+            mr.material = deactivatedMaterial;
+            
+            _canBeSelected = false;
+            rb.isKinematic = true;
+        }
+        
         /// <summary>
         /// Raises the Onselect event
         /// </summary>
         public void OnSelected()
         {
+            if (!_canBeSelected)
+            return;
+            
             //Sends current position to Vector3EventListeners
             vector3Event.Raise(this.transform.position);
         }
@@ -59,19 +89,15 @@ namespace SplitSpheres.Core.Gameplay
             }
         }
 
+        //Joints
         /*private void OnCollisionEnter(Collision other)
         {
             if (!other.gameObject.CompareTag("Cylinder")) return;
-            
-            // creates joint
+    
             var joint = gameObject.AddComponent<FixedJoint>();
             joint.breakForce = 5000;
-            
-            // sets joint position to point of contact
             joint.anchor = other.contacts[0].point; 
-            // conects the joint to the other object
             joint.connectedBody = other.contacts[0].otherCollider.transform.GetComponentInParent<Rigidbody>(); 
-            // Stops objects from continuing to collide and creating more joints
             joint.enableCollision = false;
         }*/
     }

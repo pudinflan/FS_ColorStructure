@@ -9,11 +9,27 @@ namespace SplitSpheres.Core.Gameplay
     [RequireComponent(typeof(VoidListener), typeof(Vector3Listener))]
     public class BallThrowableManager : ThrowableManager
     {
+        private int baseNumberOfBalls = 0;
+        
+        /// <summary>
+        /// Can a new ball be thrown?
+        /// </summary>
         private bool _canThrowNewBall;
 
+        /// <summary>
+        /// The possible colors of the balls. passed on level generation to make sure the balls have the same color present in the level
+        /// </summary>
         public CmColor32[] InitializedBallColors { get; set; }
-        
 
+
+        public void SpawnThrowables(int numberOfBalls,CmColor32[] ballColors)
+        {
+            baseNumberOfBalls = numberOfBalls;
+            InitializedBallColors = ballColors;
+            
+            Initialize();
+        }
+        
         /// <summary>
         ///Called on the script GameObject via VoidListener component
         /// </summary>
@@ -37,7 +53,20 @@ namespace SplitSpheres.Core.Gameplay
         public override void Initialize()
         {
             base.Initialize();
+
             _canThrowNewBall = true;
+        }
+        
+        private void ReduceNumberOfBalls()
+        {
+            baseNumberOfBalls--;
+            
+            //check for no balls
+            if (baseNumberOfBalls <= 0)
+            {
+                //TODO: LOSE STATE
+                Debug.Log("NO MORE BALLS");
+            }
         }
 
         public override void ThrowThrowable(Vector3 position)
@@ -50,7 +79,10 @@ namespace SplitSpheres.Core.Gameplay
 
             UpdateThrowables();
             _canThrowNewBall = false;
+
+            ReduceNumberOfBalls();
         }
+
         
         protected override Throwable LoadThrowableIntoSpot(Transform throwSpot)
         {

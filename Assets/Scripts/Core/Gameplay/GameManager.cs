@@ -1,12 +1,10 @@
-using System;
-using System.Collections.Generic;
-using Lean.Pool;
-using SplitSpheres.Core.GameStates;
+
 using SplitSpheres.Core.LevelGeneration;
 using SplitSpheres.Framework.SimpleFSM;
 using SplitSpheres.Framework.Utils;
+using SplitSpheres.GameStates;
+using SplitSpheres.General;
 using UnityEngine;
-using Random = System.Random;
 
 namespace SplitSpheres.Core.Gameplay
 {
@@ -21,6 +19,11 @@ namespace SplitSpheres.Core.Gameplay
         public LevelRecipe[] levelRecipes;
 
         /// <summary>
+        /// The CameraManager attached to the main Camera
+        /// </summary>
+        public CameraManager cameraManager;
+        
+        /// <summary>
         /// The Ball ThrowableManager
         /// </summary>
         public BallThrowableManager ballThrowableManager;
@@ -33,13 +36,12 @@ namespace SplitSpheres.Core.Gameplay
         /// <summary>
         /// Generated at the load of App
         /// </summary>
-        private List<Level> generatedLevels;
+        private Level generatedLevel;
 
         /// <summary>
-        /// A stack of Generated LevelObjects 
+        /// A reference to to the Generated LevelObject 
         /// </summary>
-        private List<GameObject> generatedLevelsGOs;
-
+        private GameObject generatedLevelsGO;
 
         /// <summary>
         /// Can be modified as the Game levels progress to use as a difficulty modifier in GenerateLevels(), for example giving fewer balls to start with
@@ -47,22 +49,21 @@ namespace SplitSpheres.Core.Gameplay
         /// </summary>
         private int levelReachedModifier = 1;
 
-        /// <summary>
-        /// The index of the current Level that loaded on the generatedLevels and generatedLevelsGOs
-        /// </summary>
-        private int currentPreparedLevelIndex = 0;
-
-        private void Awake()
-        {
-            generatedLevels = new List<Level>();
-            generatedLevelsGOs = new List<GameObject>();
-            currentPreparedLevelIndex = 0;
-        }
 
         private void Start()
         {
-            //Generates a Level list and saves it, also instantiates and saves reference to the generated level prefabs
-            GenerateLevels();
+            //Generates a Level and saves it TODO: Generate various levels in a pool and just activate them, instead of generating every time a new gamestate is created
+
+            if (ballThrowableManager == null)
+            {
+                ballThrowableManager = GameObject.FindObjectOfType<BallThrowableManager>();
+            }
+
+            if (cameraManager == null)
+            {
+                if (Camera.main is { }) cameraManager = Camera.main.GetComponent<CameraManager>();
+            }
+
             InitializeGameState();
         }
 
@@ -71,68 +72,40 @@ namespace SplitSpheres.Core.Gameplay
             gameStateMachine?.ExecuteStateUpdate();
         }
 
-        private void GenerateLevels()
-        {
-            for (var i = 0; i < levelRecipes.Length; i++)
-            {
-                var levelRecipe = levelRecipes[i];
-                var randomColorCmColorIndex = RandomInt.GenerateNumber(0, levelRecipe.colorCollection.Length);
-                var randomCmColor32s = levelRecipe.colorCollection[randomColorCmColorIndex].colorCollectionArray;
-
-                generatedLevels.Add(new Level(randomCmColor32s, levelRecipe.baseNumberOfBalls * levelReachedModifier,
-                    levelRecipe.levelObject));
-
-                SaveAndColorGeneratedLevels(levelRecipe, i);
-            }
-        }
-
-        private void SaveAndColorGeneratedLevels(LevelRecipe levelRecipe, int i)
-        {
-            foreach (var generatedLevel in generatedLevels)
-            {
-                foreach (var levelObjectRow in generatedLevel.LevelObject.cylRows)
-                {
-                    foreach (var cyl in levelObjectRow.rowOfCylinders)
-                    {
-                        cyl.AssignCmColor32(
-                            generatedLevel.cmColor32S[RandomInt.GenerateNumber(0, generatedLevel.cmColor32S.Length)]);
-                    }
-                }
-            }
-
-            generatedLevelsGOs.Add(levelRecipe.levelObject.gameObject);
-            Instantiate(generatedLevelsGOs[i]);
-
-            generatedLevelsGOs[i].SetActive(false);
-        }
-
         private void InitializeGameState()
         {
-            //TODO: CHANGE THIS DEBUG ONLY
-            var randomLevelIndex = RandomInt.GenerateNumber(0, generatedLevels.Count);
-            //TODO: CHANGE THIS DEBUG ONLY
-
-
             gameStateMachine = new StateMachine();
-            gameStateMachine.ChangeState(new LevelState(PrepareLevel(), ballThrowableManager));
+            gameStateMachine.ChangeState(new LevelState(PrepareLevel(), this));
         }
 
         private PreparedLevel PrepareLevel()
         {
-            //TODO: too slow Change This
-            if (generatedLevels.Count == 0)
+            var randomLevelIndex = RandomInt.GenerateNumber(0, levelRecipes.Length);
+            var levelRecipe = levelRecipes[randomLevelIndex];
+            var randomColorCmColorIndex = RandomInt.GenerateNumber(0, levelRecipe.colorCollection.Length);
+            var randomCmColor32S = levelRecipe.colorCollection[randomColorCmColorIndex].colorCollectionArray;
+
+            generatedLevel = new Level(randomCmColor32S, levelRecipe.baseNumberOfBalls * levelReachedModifier, levelRecipe.baseNumberOfInactiveRows,
+                levelRecipe.levelObject);
+
+            SaveAndColorGeneratedLevel(levelRecipe);
+
+            return new PreparedLevel(generatedLevel, generatedLevelsGO);
+        }
+
+        private void SaveAndColorGeneratedLevel(LevelRecipe levelRecipe)
+        {
+            foreach (var levelObjectRow in generatedLevel.LevelObject.cylRows)
             {
-                GenerateLevels();
+                foreach (var cyl in levelObjectRow.rowOfCylinders)
+                {
+                    cyl.AssignCmColor32(
+                        generatedLevel.cmColor32S[RandomInt.GenerateNumber(0, generatedLevel.cmColor32S.Length)]);
+                }
             }
 
-            var level = generatedLevels[currentPreparedLevelIndex];
-            var levelPrefab = generatedLevelsGOs[currentPreparedLevelIndex];
-
-            generatedLevels.RemoveAt(currentPreparedLevelIndex);
-            generatedLevelsGOs.RemoveAt(currentPreparedLevelIndex);
-
-            currentPreparedLevelIndex++;
-            return new PreparedLevel(level, levelPrefab);
+            generatedLevelsGO = Instantiate(levelRecipe.levelObject.gameObject);
+            generatedLevelsGO.SetActive(false);
         }
     }
 }

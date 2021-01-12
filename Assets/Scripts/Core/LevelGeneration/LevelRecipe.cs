@@ -26,6 +26,11 @@ namespace SplitSpheres.Core.LevelGeneration
         public int baseNumberOfBalls = 20;
         
         /// <summary>
+        /// The base number of Inactive rows to deactivate on Level Initialization
+        /// </summary>
+        public int baseNumberOfInactiveRows = 8;
+        
+        /// <summary>
         /// The possible colorCollection to be used in color generation and assignment
         /// </summary>
         public CmColorCollection[] colorCollection;

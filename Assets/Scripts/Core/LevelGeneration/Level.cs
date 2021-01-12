@@ -17,15 +17,21 @@ namespace SplitSpheres.Core.LevelGeneration
         public int numberOfBalls;
         
         /// <summary>
+        /// The number of rows that start Inactive;
+        /// </summary>
+        public int numberOfInactiveRows;
+        
+        /// <summary>
         /// The colors that will be used in the level to later assign to Materials
         /// </summary>
         public CmColor32[] cmColor32S;
 
-        public Level(CmColor32[] cmColor32S, int numberOfBalls, LevelObject levelObject)
+        public Level(CmColor32[] cmColor32S, int numberOfBalls,int numberOfInactiveRows, LevelObject levelObject)
         {
             this.cmColor32S = cmColor32S;
             this.numberOfBalls = numberOfBalls;
             this.LevelObject = levelObject;
+            this.numberOfInactiveRows = numberOfInactiveRows;
         }
     }
 }

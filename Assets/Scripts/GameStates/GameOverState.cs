@@ -1,7 +1,7 @@
 using SplitSpheres.Framework.SimpleFSM;
 using UnityEngine;
 
-namespace SplitSpheres.Core.GameStates
+namespace SplitSpheres.GameStates
 {
     public class GameOverState : MonoBehaviour, IState
     {
