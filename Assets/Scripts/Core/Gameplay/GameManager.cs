@@ -1,8 +1,8 @@
 
+using SplitSpheres.Core.GameStates;
 using SplitSpheres.Core.LevelGeneration;
 using SplitSpheres.Framework.SimpleFSM;
 using SplitSpheres.Framework.Utils;
-using SplitSpheres.GameStates;
 using SplitSpheres.General;
 using UnityEngine;
 

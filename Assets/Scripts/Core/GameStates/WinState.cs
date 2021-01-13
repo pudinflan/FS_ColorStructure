@@ -1,7 +1,7 @@
 using SplitSpheres.Framework.SimpleFSM;
 using UnityEngine;
 
-namespace SplitSpheres.GameStates
+namespace SplitSpheres.Core.GameStates
 {
     public class WinState : MonoBehaviour, IState
     {

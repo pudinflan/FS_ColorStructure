@@ -69,24 +69,17 @@ namespace SplitSpheres.Core.Gameplay
         /// </summary>
         public void ProcessBallCollision()
         {
-            //checks if there are same color cylinders in the vicinity
-            var hitColliders = Physics.OverlapSphere(this.transform.position, transform.localScale.z);
-            foreach (var hitCollider in hitColliders)
-            {
-                if (hitCollider.CompareTag("Cylinder"))
-                {
-                 hitCollider.GetComponent<Cylinder>().ChainColorCollision(AssignedCmColor32);
-                }
-            }
+            
+            this.gameObject.AddComponent < ChainableCol>().LookForCols(this);
+
+
+
         }
 
-        private void ChainColorCollision(CmColor32 assignedCmColor32)
+        private void ChainColorCollision()
         {
-            if (this.AssignedCmColor32.CompareColor(assignedCmColor32.colorTag))
-            {
-                //TODO: CHANGE TO DEACTIVATE POOL AND SHOW VFX
-                Destroy(this.gameObject);
-            }
+                ProcessBallCollision();
+                Destroy(gameObject);
         }
 
         //Joints
@@ -100,5 +93,10 @@ namespace SplitSpheres.Core.Gameplay
             joint.connectedBody = other.contacts[0].otherCollider.transform.GetComponentInParent<Rigidbody>(); 
             joint.enableCollision = false;
         }*/
+        public void DestroySelf()
+        {
+           //TODO: IMPLEMENT HERE DESTRUCTION EVENT LIke SFX AND VIBRAT
+           Destroy(this.gameObject);
+        }
     }
 }

@@ -5,7 +5,7 @@ using SplitSpheres.Framework.SimpleFSM;
 using SplitSpheres.General;
 using UnityEngine;
 
-namespace SplitSpheres.GameStates
+namespace SplitSpheres.Core.GameStates
 {
     public class LevelState : MonoBehaviour, IState
     {
@@ -46,11 +46,10 @@ namespace SplitSpheres.GameStates
             //activate Level object
             levelObjectInstance.gameObject.SetActive(true);
 
-            //Activate Balls
-            ballThrowableManager.SpawnThrowables(receivedPreparedLevel.Level.numberOfBalls,
-                receivedPreparedLevel.Level.cmColor32S);
-
+           
+ 
        
+            //Starts the level Sequence
             gameManager.StartCoroutine(ActivateLevelSequence());
             
             //InitializeRows
@@ -74,8 +73,11 @@ namespace SplitSpheres.GameStates
             var numberOfRowsToDeActivate = receivedPreparedLevel.Level.numberOfInactiveRows;
             
             gameManager.StartCoroutine(InitializeRows(numberOfRowsToDeActivate));
+            
+            //Initialize BallTrhowable System
+            InitializeBallThrowable();
         }
-        
+
         private IEnumerator InitializeRows(int nOfDeActiveRows)
         {
             var cylRows = levelObjectInstance.cylRows;
@@ -91,6 +93,14 @@ namespace SplitSpheres.GameStates
             {
                 cylRows[i].ActivateCyls();
             }
+        }
+
+        
+        private void InitializeBallThrowable()
+        {
+            //Activate Balls
+            ballThrowableManager.SpawnThrowables(receivedPreparedLevel.Level.numberOfBalls,
+                receivedPreparedLevel.Level.cmColor32S);
         }
 
         public void OnDestroy()

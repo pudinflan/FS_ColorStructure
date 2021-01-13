@@ -15,6 +15,12 @@ namespace SplitSpheres.General
         /// </summary>
         public float moveSpeed = 5f;
 
+        
+        /// <summary>
+        /// The Y offset to apply to vertical movement when moving to a target
+        /// </summary>
+        public float yOffset = -2.5f;
+        
         /// <summary>
         /// The Speed of the camera dragging
         /// </summary>
@@ -53,22 +59,18 @@ namespace SplitSpheres.General
 
             RotateAroundTarget(Vector3.zero,drag.x);
         }
-        
-        
+
         /// <summary>
         /// Moves the camera smoothly vertically regarding a pos
         /// </summary>
         /// <param name="target">the Vector3 to target</param>
         public bool  SmoothMoveToPos(Vector3 target)
         {
-            var position = transform.position;
-            var verticalVector = new Vector3(position.x, target.y, position.z);
-
-            transform.position = Vector3.MoveTowards(position, verticalVector, moveSpeed * Time.deltaTime);
+            var position = VerticalMovement(target, out var verticalVector);
 
             return Math.Abs(position.y - verticalVector.y) < .0001f;
         }
-
+        
         /// <summary>
         /// Moves the camera smoothly vertically while rotating around a target
         /// </summary>
@@ -76,13 +78,19 @@ namespace SplitSpheres.General
         /// <param name="accel">OPTIONAL: send a speed Modifier</param>
         public bool SmoothMoveToPosAndRotate(Vector3 target,float accel = 1f)
         {
-            var verticalVector = new Vector3(transform.position.x, target.y, transform.position.z);
-
-            transform.position = Vector3.MoveTowards(transform.position, verticalVector, moveSpeed * Time.deltaTime );
-          
+            var position = VerticalMovement(target, out var verticalVector);
             RotateAroundTarget(target, moveSpeed * Time.deltaTime * 10f * accel);
             
             return Math.Abs(transform.position.y - verticalVector.y) < .0001f;
+        }
+        
+        private Vector3 VerticalMovement(Vector3 target, out Vector3 verticalVector)
+        {
+            var position = transform.position;
+            verticalVector = new Vector3(position.x, target.y + yOffset, position.z);
+
+            transform.position = Vector3.MoveTowards(position, verticalVector, moveSpeed * Time.deltaTime);
+            return position;
         }
 
         private void RotateAroundTarget(Vector3 target, float angle)
