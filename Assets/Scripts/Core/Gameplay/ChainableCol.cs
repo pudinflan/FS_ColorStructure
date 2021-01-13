@@ -15,7 +15,12 @@ namespace SplitSpheres.Core.Gameplay
             cylSet = new HashSet<Cylinder>();
         }
 
-        public void LookForCols(Cylinder cylinder)
+        public static void NewChainableCollision(Cylinder cylinder)
+        {
+            cylinder.gameObject.AddComponent<ChainableCol>().LookForCols(cylinder);
+        }
+        
+        private void LookForCols(Cylinder cylinder)
         {
             searchRadius = transform.localScale.z * 1.1f;
             StartCoroutine(ProcessChainableCols(cylinder));

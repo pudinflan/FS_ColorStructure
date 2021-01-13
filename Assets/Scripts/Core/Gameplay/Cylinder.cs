@@ -69,18 +69,9 @@ namespace SplitSpheres.Core.Gameplay
         /// </summary>
         public void ProcessBallCollision()
         {
-            
-            this.gameObject.AddComponent < ChainableCol>().LookForCols(this);
-
-
-
+            ChainableCol.NewChainableCollision(this);
         }
-
-        private void ChainColorCollision()
-        {
-                ProcessBallCollision();
-                Destroy(gameObject);
-        }
+        
 
         //Joints
         /*private void OnCollisionEnter(Collision other)
