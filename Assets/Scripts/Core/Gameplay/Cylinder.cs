@@ -72,6 +72,12 @@ namespace SplitSpheres.Core.Gameplay
             ChainableCol.NewChainableCollision(this);
         }
         
+        public void DestroySelf()
+        {
+            //TODO: IMPLEMENT HERE DESTRUCTION EVENT LIke SFX AND VIBRAT
+            Destroy(this.gameObject);
+        }
+        
 
         //Joints
         /*private void OnCollisionEnter(Collision other)
@@ -84,10 +90,6 @@ namespace SplitSpheres.Core.Gameplay
             joint.connectedBody = other.contacts[0].otherCollider.transform.GetComponentInParent<Rigidbody>(); 
             joint.enableCollision = false;
         }*/
-        public void DestroySelf()
-        {
-           //TODO: IMPLEMENT HERE DESTRUCTION EVENT LIke SFX AND VIBRAT
-           Destroy(this.gameObject);
-        }
+   
     }
 }
