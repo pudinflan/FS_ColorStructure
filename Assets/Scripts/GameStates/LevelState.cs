@@ -2,6 +2,7 @@ using System.Collections;
 using SplitSpheres.Core.Gameplay;
 using SplitSpheres.Core.LevelGeneration;
 using SplitSpheres.Framework.SimpleFSM;
+using SplitSpheres.General;
 using UnityEngine;
 
 namespace SplitSpheres.GameStates
@@ -13,14 +14,16 @@ namespace SplitSpheres.GameStates
         private readonly LevelObject levelObjectInstance;
 
         private readonly GameManager gameManager;
+        private readonly CameraManager cameraManager;
         private readonly BallThrowableManager ballThrowableManager;
-
+        
         public LevelState(PreparedLevel preparedLevel, GameManager gameManager)
         {
             receivedPreparedLevel = preparedLevel;
             levelObjectInstance = preparedLevel.PreparedLevelGOInstance.GetComponent<LevelObject>();
 
             this.gameManager = gameManager;
+            cameraManager = gameManager.cameraManager;
             ballThrowableManager = gameManager.ballThrowableManager;
         }
 
@@ -48,34 +51,51 @@ namespace SplitSpheres.GameStates
                 receivedPreparedLevel.Level.cmColor32S);
 
        
-            StartCoroutine(ActivateLevelSequence());
+            gameManager.StartCoroutine(ActivateLevelSequence());
             
             //InitializeRows
-            //gameManager.StartCoroutine(InitializeRows(receivedPreparedLevel.Level.numberOfInactiveRows));
+            //gameManager.StartCoroutine());
         }
         
-        
-        public void OnDestroy()
-        {
-            Destroy(levelObjectInstance.gameObject);
-        }
+
 
         private IEnumerator ActivateLevelSequence()
         {
+            var cameraTarget = levelObjectInstance.cylRows[levelObjectInstance.cylRows.Length -1].transform.position;
+            var accel = 4f;
             
+            while (!cameraManager.SmoothMoveToPosAndRotate(cameraTarget, accel))
+            {
+                accel -= Time.deltaTime;
+                
+                yield return new WaitForEndOfFrame();
+            }
+
+            var numberOfRowsToDeActivate = receivedPreparedLevel.Level.numberOfInactiveRows;
+            
+            gameManager.StartCoroutine(InitializeRows(numberOfRowsToDeActivate));
         }
         
-        
-        private IEnumerator InitializeRows(int numberOfInitialRows)
+        private IEnumerator InitializeRows(int nOfDeActiveRows)
         {
             var cylRows = levelObjectInstance.cylRows;
             //Deactivates Cyls that need to be Hidden
-            for (var index = 0; index < numberOfInitialRows; index++)
+            for (var i = nOfDeActiveRows - 1; i >= 0; i--)
             {
-                var cylRow = cylRows[index];
-                cylRow.DeactivateCyls();
+                cylRows[i].DeactivateCyls();
+           
                 yield return new WaitForSeconds(.1f);
             }
+
+            for (var i = cylRows.Length - 1; i >= nOfDeActiveRows; i--)
+            {
+                cylRows[i].ActivateCyls();
+            }
+        }
+
+        public void OnDestroy()
+        {
+            Destroy(levelObjectInstance.gameObject);
         }
     }
 }

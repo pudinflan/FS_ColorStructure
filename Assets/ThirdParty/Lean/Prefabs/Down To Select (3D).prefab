@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3028687190044073734}
   - component: {fileID: 1973638069806894046}
-  - component: {fileID: 5229496087202509440}
+  - component: {fileID: 8170029320489439863}
   m_Layer: 0
   m_Name: Down To Select (3D)
   m_TagString: Untagged
@@ -58,7 +58,7 @@ MonoBehaviour:
   Reselect: 3
   AutoDeselect: 0
   SuppressMultipleSelectWarning: 0
---- !u!114 &5229496087202509440
+--- !u!114 &8170029320489439863
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -67,17 +67,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 5347583470448828652}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbb097c07812299498915a0a3e793843, type: 3}
+  m_Script: {fileID: 11500000, guid: f7c1c71d8ad5da9438de3b2e5990763f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   IgnoreStartedOverGui: 1
+  IgnoreIsOverGui: 0
   RequiredSelectable: {fileID: 0}
+  RequiredTapCount: 0
+  RequiredTapInterval: 0
   onFinger:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1973638069806894046}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: SelectScreenPosition
+        m_TargetAssemblyTypeName: Lean.Touch.LeanSelectBase, LeanTouch
+        m_MethodName: SelectStartScreenPosition
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -87,6 +90,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onCount:
+    m_PersistentCalls:
+      m_Calls: []
   ScreenDepth:
     Conversion: 1
     Camera: {fileID: 0}

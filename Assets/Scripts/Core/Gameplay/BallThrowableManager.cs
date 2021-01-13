@@ -36,8 +36,8 @@ namespace SplitSpheres.Core.Gameplay
         public void OnSphereArriveCylinder()
         {
             _canThrowNewBall = true;
-            ThrowablePool.Despawn(LastThrowable.gameObject);
-
+         
+            ReduceNumberOfBalls();
             Debug.Log("Arrival event Received");
         }
 
@@ -60,10 +60,12 @@ namespace SplitSpheres.Core.Gameplay
         private void ReduceNumberOfBalls()
         {
             baseNumberOfBalls--;
+            ThrowablePool.Despawn(LastThrowable.gameObject);
             
             //check for no balls
             if (baseNumberOfBalls <= 0)
             {
+                _canThrowNewBall = false;
                 //TODO: LOSE STATE
                 Debug.Log("NO MORE BALLS");
             }
@@ -79,8 +81,7 @@ namespace SplitSpheres.Core.Gameplay
 
             UpdateThrowables();
             _canThrowNewBall = false;
-
-            ReduceNumberOfBalls();
+            
         }
 
         
