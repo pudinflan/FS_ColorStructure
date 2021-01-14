@@ -27,6 +27,11 @@ namespace SplitSpheres.Core.Gameplay
         private void Awake()
         {
             _canBeSelected = false;
+
+            if (mr == null)
+            {
+                GetComponent<MeshRenderer>();
+            }
         }
 
         public void AssignCmColor32(CmColor32 cmColor32ToAssign)
@@ -37,7 +42,10 @@ namespace SplitSpheres.Core.Gameplay
 
         public void ActivateCylinder()
         {
-            mr.material = assignedCmColor32.cmColor32Material;
+            if (mr.material != null)
+            {
+                mr.material = assignedCmColor32.cmColor32Material;
+            }
 
             _canBeSelected = true;
             rb.isKinematic = false;

@@ -1,6 +1,9 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Lean.Touch;
+using SplitSpheres.Core.LevelGeneration;
+using UnityEditor;
 using UnityEngine;
 
 namespace SplitSpheres.General
@@ -14,7 +17,6 @@ namespace SplitSpheres.General
         /// The speed of the Camera when it moves via SmoothMoveToPos()
         /// </summary>
         public float moveSpeed = 5f;
-
         
         /// <summary>
         /// The Y offset to apply to vertical movement when moving to a target
@@ -28,6 +30,7 @@ namespace SplitSpheres.General
 
         private Vector2 dragStart;
         private Camera cam;
+        private int lastCheckRowIndex = 0;
 
         private void Start()
         {
@@ -38,16 +41,31 @@ namespace SplitSpheres.General
         {
             Lean.Touch.LeanTouch.OnFingerDown += HandleFingerDown;
             Lean.Touch.LeanTouch.OnFingerUpdate += HandleFinger;
+            LevelObjectRow.onRowEmpty += MoveToRow;
         }
 
         void OnDisable()
         {
             Lean.Touch.LeanTouch.OnFingerDown -= HandleFingerDown;
             Lean.Touch.LeanTouch.OnFingerUpdate -= HandleFinger;
+            LevelObjectRow.onRowEmpty -= MoveToRow;
         }
 
-      
-        
+        private void MoveToRow(int rowindex, Vector3 pos)
+        {
+
+            Debug.Log("rowindex " + rowindex + "lastCheckRowIndex: " + lastCheckRowIndex);
+            
+            if ( lastCheckRowIndex >= rowindex)
+            {
+                transform.position = new Vector3(transform.position.x, pos.y + yOffset *2 , transform.position.z);
+                lastCheckRowIndex = rowindex;
+                Handheld.Vibrate();
+            }
+        }
+
+  
+
         void HandleFingerDown(Lean.Touch.LeanFinger finger)
         {
             dragStart = finger.ScreenPosition;
@@ -82,6 +100,12 @@ namespace SplitSpheres.General
             RotateAroundTarget(target, moveSpeed * Time.deltaTime * 10f * accel);
             
             return Math.Abs(transform.position.y - verticalVector.y) < .0001f;
+        }
+        
+        //TODO: Probably PUT THIS ON THE START OF THE STATE_CAMERA_GAME when FSM is implemented
+        public void InitializeCamLevelState()
+        {
+            lastCheckRowIndex = 100;
         }
         
         private Vector3 VerticalMovement(Vector3 target, out Vector3 verticalVector)

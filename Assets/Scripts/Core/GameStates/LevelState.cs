@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using SplitSpheres.Core.Gameplay;
 using SplitSpheres.Core.LevelGeneration;
 using SplitSpheres.Framework.SimpleFSM;
@@ -17,6 +18,8 @@ namespace SplitSpheres.Core.GameStates
         private readonly CameraManager cameraManager;
         private readonly BallThrowableManager ballThrowableManager;
         
+        private List<int> checkedActiveIndexes = new List<int>();
+        
         public LevelState(PreparedLevel preparedLevel, GameManager gameManager)
         {
             receivedPreparedLevel = preparedLevel;
@@ -31,7 +34,9 @@ namespace SplitSpheres.Core.GameStates
         {
             //ActivateLevelObject
             ActivateLevel();
+           
         }
+
 
         public void Execute()
         {
@@ -39,16 +44,17 @@ namespace SplitSpheres.Core.GameStates
 
         public void Exit()
         {
+            LevelObjectRow.onRowEmpty -= ActivateNextRow;
         }
         
         private void ActivateLevel()
         {
+            LevelObjectRow.onRowEmpty += ActivateNextRow;
+            
             //activate Level object
             levelObjectInstance.gameObject.SetActive(true);
 
-           
- 
-       
+            
             //Starts the level Sequence
             gameManager.StartCoroutine(ActivateLevelSequence());
             
@@ -70,6 +76,8 @@ namespace SplitSpheres.Core.GameStates
                 yield return new WaitForEndOfFrame();
             }
 
+            cameraManager.InitializeCamLevelState(); //TODO: CHANGE TO STATE SYSTEM
+            
             var numberOfRowsToDeActivate = receivedPreparedLevel.Level.numberOfInactiveRows;
             
             gameManager.StartCoroutine(InitializeRows(numberOfRowsToDeActivate));
@@ -78,21 +86,43 @@ namespace SplitSpheres.Core.GameStates
             InitializeBallThrowable();
         }
 
+        
+        
         private IEnumerator InitializeRows(int nOfDeActiveRows)
         {
+            
+            
             var cylRows = levelObjectInstance.cylRows;
             //Deactivates Cyls that need to be Hidden
             for (var i = nOfDeActiveRows - 1; i >= 0; i--)
             {
                 cylRows[i].DeactivateCyls();
-           
+                cylRows[i].RowIndex = i;
+
+                //Debug.Log(cylRows[i].name +"index: " + i);
+             
                 yield return new WaitForSeconds(.1f);
             }
 
+          
+                
             for (var i = cylRows.Length - 1; i >= nOfDeActiveRows; i--)
             {
+                cylRows[i].RowIndex = i;
                 cylRows[i].ActivateCyls();
             }
+        }
+        
+
+        private void ActivateNextRow(int receivedIndex, Vector3 rowPosition)
+        {
+            if (checkedActiveIndexes.Contains(receivedIndex)) return;
+            
+            Debug.Log("Activate Next: "+receivedIndex);
+            var cylRows = levelObjectInstance.cylRows;
+            cylRows[receivedIndex - ( cylRows.Length - receivedPreparedLevel.Level.numberOfInactiveRows)]?.ActivateCyls();
+            checkedActiveIndexes.Add(receivedIndex);
+
         }
 
         
