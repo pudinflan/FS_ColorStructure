@@ -120,9 +120,12 @@ namespace SplitSpheres.Core.GameStates
             
             Debug.Log("Activate Next: "+receivedIndex);
             var cylRows = levelObjectInstance.cylRows;
-            cylRows[receivedIndex - ( cylRows.Length - receivedPreparedLevel.Level.numberOfInactiveRows)]?.ActivateCyls();
+            
+            var calculatedIndex = receivedIndex -(cylRows.Length - receivedPreparedLevel.Level.numberOfInactiveRows);
+            
+            if (calculatedIndex < 0) return;
+            cylRows[calculatedIndex].ActivateCyls();
             checkedActiveIndexes.Add(receivedIndex);
-
         }
 
         
