@@ -137,6 +137,9 @@ MonoBehaviour:
     colorTag: red
     cmColor32Material: {fileID: 2100000, guid: c4470937a0b0c574d9ed99392659befa, type: 2}
   vector3Event: {fileID: 11400000, guid: afd4159aef43b9f40b6bf1ef69dd8637, type: 2}
+  specialCylColorCollection: {fileID: 11400000, guid: a2790be67c0ca5745b3b2bbcdb73ad47,
+    type: 2}
+  colorChangeSpeedRate: 4
 --- !u!114 &7291032481807282900
 MonoBehaviour:
   m_ObjectHideFlags: 0

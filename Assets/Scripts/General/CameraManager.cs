@@ -46,14 +46,14 @@ namespace SplitSpheres.General
         {
             Lean.Touch.LeanTouch.OnFingerDown += HandleFingerDown;
             Lean.Touch.LeanTouch.OnFingerUpdate += HandleFinger;
-            LevelObjectRow.onRowEmpty += MoveToRow;
+            LevelObjectRow.ONRowEmpty += MoveToRow;
         }
 
         void OnDisable()
         {
             Lean.Touch.LeanTouch.OnFingerDown -= HandleFingerDown;
             Lean.Touch.LeanTouch.OnFingerUpdate -= HandleFinger;
-            LevelObjectRow.onRowEmpty -= MoveToRow;
+            LevelObjectRow.ONRowEmpty -= MoveToRow;
         }
 
         private void MoveToRow(int rowindex, Vector3 pos)
@@ -81,7 +81,7 @@ namespace SplitSpheres.General
         {
             Vector3 drag = cam.ScreenToViewportPoint(finger.ScreenPosition - dragStart);
 
-            RotateAroundTarget(Vector3.zero,drag.x);
+            RotateAroundTarget(Vector3.zero,drag.x * 20);
         }
 
         /// <summary>

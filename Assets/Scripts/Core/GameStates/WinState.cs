@@ -1,5 +1,6 @@
 using SplitSpheres.Core.LevelGeneration;
 using SplitSpheres.Framework.SimpleFSM;
+using UnityAdsIntegration;
 using UnityEngine;
 
 namespace SplitSpheres.Core.GameStates
@@ -17,6 +18,7 @@ namespace SplitSpheres.Core.GameStates
         
         public void Enter()
         {
+            AdsManager.ShowVideoAd();
             mainCanvasController.endGamePanel.RewardAndShow(previousLevel.numberOfBalls);
         }
 

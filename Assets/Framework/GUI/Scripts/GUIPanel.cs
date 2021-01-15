@@ -12,7 +12,7 @@ namespace SplitSpheres.Framework.GUI.Scripts
         [SerializeField] protected CanvasGroup canvasGroup;
         [SerializeField] protected bool startActive = false;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             if (canvasGroup == null) canvasGroup = GetComponent<CanvasGroup>();
 
@@ -22,15 +22,23 @@ namespace SplitSpheres.Framework.GUI.Scripts
 
         public virtual void Show()
         {
-            canvasGroup.blocksRaycasts = true;
-            canvasGroup.alpha = 1;
+            if (canvasGroup != null)
+            {
+                canvasGroup.blocksRaycasts = true;
+                canvasGroup.alpha = 1;
+            }
+        
         }
 
 
         public virtual void Hide()
         {
-            canvasGroup.blocksRaycasts = false;
-            canvasGroup.alpha = 0;
+            if (canvasGroup != null)
+            {
+                canvasGroup.blocksRaycasts = false;
+                canvasGroup.alpha = 0;
+            }
+           
         }
     }
 }

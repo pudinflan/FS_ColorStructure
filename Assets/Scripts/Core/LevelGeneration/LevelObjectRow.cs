@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using SplitSpheres.Core.Gameplay;
+using SplitSpheres.Core.GameStates;
 using UnityEngine;
 
 namespace SplitSpheres.Core.LevelGeneration
@@ -14,12 +15,22 @@ namespace SplitSpheres.Core.LevelGeneration
         public List<Cylinder> rowOfCylinders;
         private  Collider fallCheckCol;
 
-
         public delegate void RowEmpty(int rowIndex, Vector3 rowPosition);
-        public static event RowEmpty onRowEmpty;
+        public static event RowEmpty ONRowEmpty;
         
         public delegate void CylDropped();
-        public static event CylDropped onCylDropped;
+        public static event CylDropped ONCylDropped;
+        
+        private bool alreadyActivated = false;
+        
+        public int RowIndex { get; set; }
+
+        public bool AlreadyActivated
+        {
+            get => alreadyActivated;
+            set => alreadyActivated = value;
+        }
+        
         
         private void Awake()
         {
@@ -27,9 +38,6 @@ namespace SplitSpheres.Core.LevelGeneration
      
  
         }
-
-
-        public int RowIndex { get; set; }
 
         /// <summary>
         /// Turns isKinematic = false, and Recolors to dark Grey for each cyl
@@ -59,7 +67,8 @@ namespace SplitSpheres.Core.LevelGeneration
                 }
                 
             }
-            
+
+            alreadyActivated = true;
             fallCheckCol.enabled = true;
         }
 
@@ -71,16 +80,13 @@ namespace SplitSpheres.Core.LevelGeneration
             //if the cyl is not already checked keep going
             if (!rowOfCylinders.Contains(checkingCyl)) return; 
 
+            ONCylDropped?.Invoke();
             rowOfCylinders.Remove(checkingCyl);
-            onCylDropped?.Invoke();
             
             rowOfCylinders = rowOfCylinders.Where(x => x != null).ToList();
-            
-            if (!rowOfCylinders.Any() )
-            {
-                onRowEmpty?.Invoke(RowIndex, this.transform.position);
-              
-            }
+
+            if (rowOfCylinders.Any()) return;
+            ONRowEmpty?.Invoke(RowIndex, this.transform.position);
         }
 
       

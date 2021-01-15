@@ -9,7 +9,17 @@ namespace SplitSpheres.Core.GUI.General
     {
 
         public TextMeshProUGUI rewardAmountText;
-        
+
+
+        protected override void Awake()
+        {
+            if (canvasGroup == null) canvasGroup = GetComponent<CanvasGroup>();
+
+            if (startActive) Show();
+         
+        }
+
+   
         public void RewardAndShow(int rewardAmount)
         {
             rewardAmountText.text = rewardAmount.ToString();
@@ -22,5 +32,7 @@ namespace SplitSpheres.Core.GUI.General
 
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+
+      
     }
 }

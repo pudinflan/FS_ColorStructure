@@ -122,8 +122,10 @@ namespace SplitSpheres.Core.Gameplay
             {
                 foreach (var cyl in levelObjectRow.rowOfCylinders)
                 {
-                    cyl.AssignCmColor32(
-                        generatedLevel.cmColor32S[RandomInt.GenerateNumber(0, generatedLevel.cmColor32S.Length)]);
+                  
+                        cyl.AssignCmColor32(generatedLevel.cmColor32S[RandomInt.GenerateNumber(0, generatedLevel.cmColor32S.Length)]);
+                
+
                 }
             }
 

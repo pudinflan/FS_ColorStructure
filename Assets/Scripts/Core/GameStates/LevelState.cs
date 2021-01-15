@@ -20,12 +20,13 @@ namespace SplitSpheres.Core.GameStates
         private readonly CameraManager cameraManager;
         private readonly BallThrowableManager ballThrowableManager;
 
-        private List<int> checkedActiveIndexes = new List<int>();
+        private readonly List<int> checkedActiveIndexes = new List<int>();
+
         private int totalCyls;
         private int destroyedCyls;
 
         private bool canLose = true;
-        
+
         public LevelState(PreparedLevel preparedLevel, GameManager gameManager)
         {
             receivedPreparedLevel = preparedLevel;
@@ -43,32 +44,29 @@ namespace SplitSpheres.Core.GameStates
         {
             //activate Level object
             levelObjectInstance.gameObject.SetActive(true);
-
-       
         }
 
 
         public void Execute()
         {
-           
         }
 
         public void Exit()
         {
-            LevelObjectRow.onRowEmpty -= ActivateNextRow;
-            LevelObjectRow.onCylDropped -= DecreaseNumberOfCyls;
+            LevelObjectRow.ONRowEmpty -= ActivateNextRow;
+            LevelObjectRow.ONCylDropped -= DecreaseNumberOfCyls;
             Cylinder.onCylDestroyed -= DecreaseNumberOfCyls;
         }
 
 
-        public void WinState()
+        private void WinState()
         {
             canLose = false;
             ballThrowableManager.CanThrowNewBall = false;
             Manager.GameStateMachine.ChangeState(new WinState(this, receivedPreparedLevel.Level));
         }
 
-        public void GameOverState()
+        private void GameOverState()
         {
             if (canLose)
             {
@@ -84,11 +82,10 @@ namespace SplitSpheres.Core.GameStates
 
         public void ActivateLevel()
         {
-            LevelObjectRow.onRowEmpty += ActivateNextRow;
-            LevelObjectRow.onCylDropped += DecreaseNumberOfCyls;
+            LevelObjectRow.ONRowEmpty += ActivateNextRow;
+            LevelObjectRow.ONCylDropped += DecreaseNumberOfCyls;
             Cylinder.onCylDestroyed += DecreaseNumberOfCyls;
 
-          
 
             //Starts the level Sequence
             Manager.StartCoroutine(ActivateLevelSequence());
@@ -129,6 +126,7 @@ namespace SplitSpheres.Core.GameStates
                 cylRows[i].DeactivateCyls();
                 cylRows[i].RowIndex = i;
 
+
                 foreach (var cyl in cylRows[i].rowOfCylinders)
                 {
                     totalCyls++;
@@ -142,6 +140,7 @@ namespace SplitSpheres.Core.GameStates
                 cylRows[i].RowIndex = i;
                 cylRows[i].ActivateCyls();
 
+
                 foreach (var cyl in cylRows[i].rowOfCylinders)
                 {
                     totalCyls++;
@@ -154,27 +153,36 @@ namespace SplitSpheres.Core.GameStates
         }
 
 
-        private void ActivateNextRow(int receivedIndex, Vector3 rowPosition)
-        {
-            if (checkedActiveIndexes.Contains(receivedIndex)) return;
-
-            Debug.Log("Activate Next: " + receivedIndex);
-            var cylRows = levelObjectInstance.cylRows;
-            var activeRowsCount = (cylRows.Length - receivedPreparedLevel.Level.numberOfInactiveRows);
-            var calculatedIndex = receivedIndex - activeRowsCount;
-
-            if (calculatedIndex < 0) return;
-            cylRows[calculatedIndex].ActivateCyls();
-            checkedActiveIndexes.Add(receivedIndex);
-        }
-
-
         private void InitializeBallThrowable()
         {
             //Activate Balls
             ballThrowableManager.SpawnThrowables(receivedPreparedLevel.Level.numberOfBalls,
                 receivedPreparedLevel.Level.cmColor32S, this);
         }
+        
+        
+        private void ActivateNextRow(int receivedIndex, Vector3 rowPosition)
+        {
+            if (checkedActiveIndexes.Contains(receivedIndex)) return;
+
+
+            var cylRows = levelObjectInstance.cylRows;
+            var activeRowsCount = (cylRows.Length - receivedPreparedLevel.Level.numberOfInactiveRows);
+            var calculatedIndex = receivedIndex - activeRowsCount;
+
+
+            if (calculatedIndex < 0) return;
+
+            for (var i = calculatedIndex; i < cylRows.Length  - activeRowsCount; i++)
+            {
+                var cylRow = cylRows[i];
+                if (cylRow.AlreadyActivated) continue;
+                cylRow.ActivateCyls();
+            }
+
+            checkedActiveIndexes.Add(receivedIndex);
+        }
+
 
         private void DecreaseNumberOfCyls()
         {
@@ -199,9 +207,10 @@ namespace SplitSpheres.Core.GameStates
             while (time < 4f)
             {
                 time += Time.deltaTime;
-               
+
                 yield return new WaitForEndOfFrame();
             }
+
             GameOverState();
         }
 

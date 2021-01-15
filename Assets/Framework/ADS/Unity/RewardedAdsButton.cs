@@ -1,3 +1,4 @@
+using SplitSpheres.Core.GUI.General;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Advertisements;
@@ -17,9 +18,12 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsListener {
     Button myButton;
     public string myPlacementId = "rewardedVideo";
 
+    private GUIPanelAds guiPanelAds;
+    
     void Start () {   
         myButton = GetComponent <Button> ();
-
+        guiPanelAds = GetComponentInParent<GUIPanelAds>();
+            
         // Set interactivity to be dependent on the Placement’s status:
         myButton.interactable = Advertisement.IsReady (myPlacementId); 
 
@@ -47,7 +51,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsListener {
     public void OnUnityAdsDidFinish (string placementId, ShowResult showResult) {
         // Define conditional logic for each ad completion status:
         if (showResult == ShowResult.Finished) {
-            // Reward the user for watching the ad to completion.
+          guiPanelAds.Hide();
         } else if (showResult == ShowResult.Skipped) {
             // Do not reward the user for skipping the ad.
         } else if (showResult == ShowResult.Failed) {
