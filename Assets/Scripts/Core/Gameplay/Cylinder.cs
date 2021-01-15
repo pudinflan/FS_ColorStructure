@@ -55,7 +55,7 @@ namespace SplitSpheres.Core.Gameplay
 
         private void Start()
         {
-            imSpecial = RandomInt.GenerateNumber(0, 20) > 15;
+            imSpecial = RandomInt.GenerateNumber(0, 20) > 17;
 
         }
 
