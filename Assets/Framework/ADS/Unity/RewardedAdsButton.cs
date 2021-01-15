@@ -52,6 +52,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsListener {
         // Define conditional logic for each ad completion status:
         if (showResult == ShowResult.Finished) {
           guiPanelAds.Hide();
+          Advertisement.RemoveListener(this);
         } else if (showResult == ShowResult.Skipped) {
             // Do not reward the user for skipping the ad.
         } else if (showResult == ShowResult.Failed) {

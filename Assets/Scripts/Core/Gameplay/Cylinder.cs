@@ -115,6 +115,7 @@ namespace SplitSpheres.Core.Gameplay
         {
             onCylDestroyed?.Invoke();
             //TODO: IMPLEMENT HERE DESTRUCTION EVENT LIke SFX AND VIBRAT
+            
             Destroy(this.gameObject);
         }
 

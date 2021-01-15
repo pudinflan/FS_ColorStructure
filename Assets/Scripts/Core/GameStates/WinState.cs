@@ -9,9 +9,11 @@ namespace SplitSpheres.Core.GameStates
     {
         private MainCanvasController mainCanvasController;
         private Level previousLevel;
-        
+        private LevelState previousLevelState;
+
         public WinState(LevelState levelState, Level level)
         {
+            previousLevelState = levelState;
             mainCanvasController = levelState.Manager.mainCanvasController;
             previousLevel = level;
         }
@@ -19,7 +21,9 @@ namespace SplitSpheres.Core.GameStates
         public void Enter()
         {
             AdsManager.ShowVideoAd();
-            mainCanvasController.endGamePanel.RewardAndShow(previousLevel.numberOfBalls);
+            mainCanvasController.endGamePanel.RewardAndShow(previousLevel.numberOfBalls +
+                                                            previousLevelState.Manager.ballThrowableManager
+                                                                .CurrentActiveBalls, true);
         }
 
         public void Execute()

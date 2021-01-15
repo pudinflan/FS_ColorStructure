@@ -26,6 +26,7 @@ namespace SplitSpheres.Core.GameStates
         private int destroyedCyls;
 
         private bool canLose = true;
+        private bool alreadyLostOnce = false;
 
         public LevelState(PreparedLevel preparedLevel, GameManager gameManager)
         {
@@ -39,6 +40,12 @@ namespace SplitSpheres.Core.GameStates
         }
 
         public GameManager Manager => gameManager;
+
+        public bool CanLose
+        {
+            get => canLose;
+            set => canLose = value;
+        }
 
         public void Enter()
         {
@@ -61,16 +68,22 @@ namespace SplitSpheres.Core.GameStates
 
         private void WinState()
         {
-            canLose = false;
+            CanLose = false;
             ballThrowableManager.CanThrowNewBall = false;
             Manager.GameStateMachine.ChangeState(new WinState(this, receivedPreparedLevel.Level));
         }
 
         private void GameOverState()
         {
-            if (canLose)
+            if (!CanLose) return;
+            if (alreadyLostOnce)
             {
                 Manager.GameStateMachine.ChangeState(new GameOverState(this, receivedPreparedLevel.Level));
+            }
+            else
+            {
+                alreadyLostOnce = true;
+                Manager.mainCanvasController.retryGamePanel.ShowRetry(this, receivedPreparedLevel.Level);
             }
         }
 

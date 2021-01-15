@@ -8,6 +8,7 @@ namespace SplitSpheres
     public class MainCanvasController : MonoBehaviour
     {
         public GUIPanelAds endGamePanel;
+        public GUIPanelRetry retryGamePanel;
 
 
     }

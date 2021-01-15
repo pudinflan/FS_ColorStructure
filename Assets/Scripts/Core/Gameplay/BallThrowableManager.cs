@@ -12,8 +12,8 @@ namespace SplitSpheres.Core.Gameplay
     public class BallThrowableManager : ThrowableManager
     {
         private LevelState currentActiveLevelState;
-        private int baseNumberOfBalls = 0;
-        
+        private int currentActiveBalls = 0;
+
         /// <summary>
         /// Can a new ball be thrown?
         /// </summary>
@@ -33,23 +33,29 @@ namespace SplitSpheres.Core.Gameplay
             set => _canThrowNewBall = value;
         }
 
-
-        public void SpawnThrowables(int numberOfBalls,CmColor32[] ballColors, LevelState currentLevelState)
+        public int CurrentActiveBalls
         {
-            baseNumberOfBalls = numberOfBalls;
+            get => currentActiveBalls;
+            set => currentActiveBalls = value;
+        }
+
+
+        public void SpawnThrowables(int numberOfBalls, CmColor32[] ballColors, LevelState currentLevelState)
+        {
+            CurrentActiveBalls = numberOfBalls;
             InitializedBallColors = ballColors;
             currentActiveLevelState = currentLevelState;
-             currentActiveLevelState.GameCanvasController.ballThrowablePanel.DisplayNumberOfBalls(baseNumberOfBalls);
+            UpdateBallsUI();
             Initialize();
         }
-        
+
         /// <summary>
         ///Called on the script GameObject via VoidListener component
         /// </summary>
         public void OnSphereArriveCylinder()
         {
             CanThrowNewBall = true;
-         
+
             ReduceNumberOfBalls();
             Debug.Log("Arrival event Received");
         }
@@ -62,28 +68,47 @@ namespace SplitSpheres.Core.Gameplay
             ThrowThrowable(position);
             Debug.Log("ThrowRequest event Received");
         }
-        
+
+        /// <summary>
+        /// Initializes the this Manager
+        /// </summary>
         public override void Initialize()
         {
             base.Initialize();
-           
+
             CanThrowNewBall = true;
         }
-        
+
+        /// <summary>
+        /// Raises tje number of Active balls
+        /// </summary>
+        /// <param name="newNBalls"> number of balls to add</param>
+        public void GiveMoreBalls(int newNBalls)
+        {
+            CanThrowNewBall = true;
+            CurrentActiveBalls = newNBalls;
+            UpdateBallsUI();
+        }
+
         private void ReduceNumberOfBalls()
         {
-            baseNumberOfBalls--;
+            CurrentActiveBalls--;
             ThrowablePool.Despawn(LastThrowable.gameObject);
-            currentActiveLevelState.GameCanvasController.ballThrowablePanel.DisplayNumberOfBalls(baseNumberOfBalls);
+            UpdateBallsUI();
             //check for no balls
-            if (baseNumberOfBalls <= 0)
+            if (CurrentActiveBalls <= 0)
             {
                 CanThrowNewBall = false;
 
                 currentActiveLevelState.CheckForGameOver();
             }
         }
-        
+
+        private void UpdateBallsUI()
+        {
+            currentActiveLevelState.GameCanvasController.ballThrowablePanel.DisplayNumberOfBalls(CurrentActiveBalls);
+        }
+
 
         public override void ThrowThrowable(Vector3 position)
         {
@@ -95,17 +120,15 @@ namespace SplitSpheres.Core.Gameplay
 
             UpdateThrowables();
             CanThrowNewBall = false;
-            
         }
-        
+
         protected override Throwable LoadThrowableIntoSpot(Transform throwSpot)
         {
             var ball = ThrowablePool.Spawn(throwSpot.position, Quaternion.identity, throwSpot)
                 .GetComponent<Throwable>();
-            ball.GetComponent<ThrowableBall>().AssignCmColor32(InitializedBallColors[RandomInt.GenerateNumber(0, InitializedBallColors.Length)]);
+            ball.GetComponent<ThrowableBall>()
+                .AssignCmColor32(InitializedBallColors[RandomInt.GenerateNumber(0, InitializedBallColors.Length)]);
             return ball;
         }
-        
-
     }
 }
