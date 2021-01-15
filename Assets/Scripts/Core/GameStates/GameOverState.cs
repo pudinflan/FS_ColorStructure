@@ -8,22 +8,24 @@ namespace SplitSpheres.Core.GameStates
        
         public void Enter()
         {
-            throw new System.NotImplementedException();
+      
+            //TODO: OPEN HERE THE RETRY MENU
+            Debug.Log("YOU LOOSE");
         }
 
         public void Execute()
         {
-            throw new System.NotImplementedException();
+          
         }
 
         public void Exit()
         {
-            throw new System.NotImplementedException();
+            
         }
 
         public void OnDestroy()
         {
-            throw new System.NotImplementedException();
+            
         }
     }
 }

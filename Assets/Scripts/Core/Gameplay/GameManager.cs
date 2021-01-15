@@ -1,6 +1,8 @@
 
 using SplitSpheres.Core.GameStates;
+using SplitSpheres.Core.GUI;
 using SplitSpheres.Core.LevelGeneration;
+using SplitSpheres.Framework.GUI.Scripts;
 using SplitSpheres.Framework.SimpleFSM;
 using SplitSpheres.Framework.Utils;
 using SplitSpheres.General;
@@ -29,9 +31,14 @@ namespace SplitSpheres.Core.Gameplay
         public BallThrowableManager ballThrowableManager;
 
         /// <summary>
+        /// The Game Canvas Controller
+        /// </summary>
+        public GameCanvasController gameCanvasController;
+        
+        /// <summary>
         /// Handles the different GameStates, that control the game flow  -> LevelState, WinState and GameOverState
         /// </summary>
-        private StateMachine gameStateMachine;
+        public StateMachine GameStateMachine;
 
         /// <summary>
         /// Generated at the load of App
@@ -49,6 +56,10 @@ namespace SplitSpheres.Core.Gameplay
         /// </summary>
         private int levelReachedModifier = 1;
 
+        /// <summary>
+        /// A reference to the currentLevel State that is running
+        /// </summary>
+        private LevelState currentLevelstate;
 
         private void Start()
         {
@@ -64,18 +75,24 @@ namespace SplitSpheres.Core.Gameplay
                 if (Camera.main is { }) cameraManager = Camera.main.GetComponent<CameraManager>();
             }
 
-            InitializeGameState();
+            PrepareNewLevel();
         }
 
         private void Update()
         {
-            gameStateMachine?.ExecuteStateUpdate();
+            GameStateMachine?.ExecuteStateUpdate();
         }
 
-        private void InitializeGameState()
+        public void StartNewLevel()
         {
-            gameStateMachine = new StateMachine();
-            gameStateMachine.ChangeState(new LevelState(PrepareLevel(), this));
+            currentLevelstate.ActivateLevel();
+        }
+        
+        private void PrepareNewLevel()
+        {
+            GameStateMachine = new StateMachine();
+            currentLevelstate = new LevelState(PrepareLevel(), this);
+            GameStateMachine.ChangeState(currentLevelstate);
         }
 
         private PreparedLevel PrepareLevel()

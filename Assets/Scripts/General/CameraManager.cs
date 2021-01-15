@@ -22,6 +22,11 @@ namespace SplitSpheres.General
         /// The Y offset to apply to vertical movement when moving to a target
         /// </summary>
         public float yOffset = -2.5f;
+
+        /// <summary>
+        /// The number of the line where the camera will stop descending
+        /// </summary>
+        public int stopMoveAtLine = 8;
         
         /// <summary>
         /// The Speed of the camera dragging
@@ -56,16 +61,17 @@ namespace SplitSpheres.General
 
             Debug.Log("rowindex " + rowindex + "lastCheckRowIndex: " + lastCheckRowIndex);
             
-            if ( lastCheckRowIndex >= rowindex)
+            if ( lastCheckRowIndex >= rowindex )
             {
-                transform.position = new Vector3(transform.position.x, pos.y + yOffset *2 , transform.position.z);
+                if (rowindex > stopMoveAtLine)
+                {
+                    transform.position = new Vector3(transform.position.x, pos.y + yOffset *2 , transform.position.z);
+                }
                 lastCheckRowIndex = rowindex;
                 Handheld.Vibrate();
             }
         }
-
-  
-
+        
         void HandleFingerDown(Lean.Touch.LeanFinger finger)
         {
             dragStart = finger.ScreenPosition;

@@ -18,5 +18,4 @@ MonoBehaviour:
   baseNumberOfBalls: 26
   baseNumberOfInactiveRows: 12
   colorCollection:
-  - {fileID: 11400000, guid: 832f2b35db47ff9419da7ec35f5b6c7d, type: 2}
-  - {fileID: 11400000, guid: d58ee762205baea49b5b51805fed9df2, type: 2}
+  - {fileID: 11400000, guid: fac9aeb6165f6d14094b759f7615bdbc, type: 2}

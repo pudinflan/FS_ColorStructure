@@ -45,6 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelRecipes:
   - {fileID: 11400000, guid: 5278eb30a32d5634e86a392ad5048d8d, type: 2}
-  - {fileID: 11400000, guid: c0550428b5d52784ab15c3d41b535c18, type: 2}
-  - {fileID: 11400000, guid: 1b59182a06643ce44a3cebfb7b9b8bd8, type: 2}
+  cameraManager: {fileID: 0}
   ballThrowableManager: {fileID: 0}
+  gameCanvasController: {fileID: 0}

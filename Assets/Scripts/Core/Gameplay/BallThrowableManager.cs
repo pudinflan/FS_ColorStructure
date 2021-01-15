@@ -1,3 +1,5 @@
+using System.Collections;
+using SplitSpheres.Core.GameStates;
 using SplitSpheres.Framework.ColorManagement;
 using SplitSpheres.Framework.GameEvents.Listeners;
 using SplitSpheres.Framework.ThrowablesSystem.Scripts;
@@ -9,6 +11,7 @@ namespace SplitSpheres.Core.Gameplay
     [RequireComponent(typeof(VoidListener), typeof(Vector3Listener))]
     public class BallThrowableManager : ThrowableManager
     {
+        private LevelState currentActiveLevelState;
         private int baseNumberOfBalls = 0;
         
         /// <summary>
@@ -21,12 +24,22 @@ namespace SplitSpheres.Core.Gameplay
         /// </summary>
         public CmColor32[] InitializedBallColors { get; set; }
 
+        /// <summary>
+        /// Can a new ball be thrown?
+        /// </summary>
+        public bool CanThrowNewBall
+        {
+            get => _canThrowNewBall;
+            set => _canThrowNewBall = value;
+        }
 
-        public void SpawnThrowables(int numberOfBalls,CmColor32[] ballColors)
+
+        public void SpawnThrowables(int numberOfBalls,CmColor32[] ballColors, LevelState currentLevelState)
         {
             baseNumberOfBalls = numberOfBalls;
             InitializedBallColors = ballColors;
-            
+            currentActiveLevelState = currentLevelState;
+             currentActiveLevelState.GameCanvasController.ballThrowablePanel.DisplayNumberOfBalls(baseNumberOfBalls);
             Initialize();
         }
         
@@ -35,7 +48,7 @@ namespace SplitSpheres.Core.Gameplay
         /// </summary>
         public void OnSphereArriveCylinder()
         {
-            _canThrowNewBall = true;
+            CanThrowNewBall = true;
          
             ReduceNumberOfBalls();
             Debug.Log("Arrival event Received");
@@ -53,37 +66,37 @@ namespace SplitSpheres.Core.Gameplay
         public override void Initialize()
         {
             base.Initialize();
-
-            _canThrowNewBall = true;
+           
+            CanThrowNewBall = true;
         }
         
         private void ReduceNumberOfBalls()
         {
             baseNumberOfBalls--;
             ThrowablePool.Despawn(LastThrowable.gameObject);
-            
+            currentActiveLevelState.GameCanvasController.ballThrowablePanel.DisplayNumberOfBalls(baseNumberOfBalls);
             //check for no balls
             if (baseNumberOfBalls <= 0)
             {
-                _canThrowNewBall = false;
-                //TODO: LOSE STATE
-                Debug.Log("NO MORE BALLS");
+                CanThrowNewBall = false;
+
+                currentActiveLevelState.CheckForGameOver();
             }
         }
+        
 
         public override void ThrowThrowable(Vector3 position)
         {
-            if (!_canThrowNewBall)
+            if (!CanThrowNewBall)
                 return;
 
             var ballToThrow = MainThrowable;
             ballToThrow.Throw(position);
 
             UpdateThrowables();
-            _canThrowNewBall = false;
+            CanThrowNewBall = false;
             
         }
-
         
         protected override Throwable LoadThrowableIntoSpot(Transform throwSpot)
         {
@@ -92,5 +105,7 @@ namespace SplitSpheres.Core.Gameplay
             ball.GetComponent<ThrowableBall>().AssignCmColor32(InitializedBallColors[RandomInt.GenerateNumber(0, InitializedBallColors.Length)]);
             return ball;
         }
+        
+
     }
 }

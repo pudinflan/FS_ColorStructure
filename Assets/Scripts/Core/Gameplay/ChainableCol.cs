@@ -51,7 +51,7 @@ namespace SplitSpheres.Core.Gameplay
             {
                 var hitCyl = hitCollider.GetComponent<Cylinder>();
 
-                if (hitCyl == null) continue;
+                if (hitCyl == null || !hitCyl.CanBeSelected) continue;
                 if (hitCyl.AssignedCmColor32.CompareColor(originalCyl.AssignedCmColor32.colorTag))
                 {
                     if (!cylSet.Contains(hitCyl))

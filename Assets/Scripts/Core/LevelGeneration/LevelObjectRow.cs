@@ -18,6 +18,8 @@ namespace SplitSpheres.Core.LevelGeneration
         public delegate void RowEmpty(int rowIndex, Vector3 rowPosition);
         public static event RowEmpty onRowEmpty;
         
+        public delegate void CylDropped();
+        public static event CylDropped onCylDropped;
         
         private void Awake()
         {
@@ -70,13 +72,14 @@ namespace SplitSpheres.Core.LevelGeneration
             if (!rowOfCylinders.Contains(checkingCyl)) return; 
 
             rowOfCylinders.Remove(checkingCyl);
-      
+            onCylDropped?.Invoke();
+            
             rowOfCylinders = rowOfCylinders.Where(x => x != null).ToList();
+            
             if (!rowOfCylinders.Any() )
             {
-                
-                if (onRowEmpty != null) 
-                    onRowEmpty(RowIndex, this.transform.position);
+                onRowEmpty?.Invoke(RowIndex, this.transform.position);
+              
             }
         }
 

@@ -22,16 +22,21 @@ namespace SplitSpheres.Core.Gameplay
 
         public CmColor32 AssignedCmColor32 => assignedCmColor32;
 
-        private bool _canBeSelected;
+        public bool CanBeSelected { get; set; }
         
+        public delegate void CylDestroyed();
+        public static event CylDestroyed onCylDestroyed;
+
         private void Awake()
         {
-            _canBeSelected = false;
+            CanBeSelected = false;
 
             if (mr == null)
             {
                 GetComponent<MeshRenderer>();
             }
+            
+            
         }
 
         public void AssignCmColor32(CmColor32 cmColor32ToAssign)
@@ -47,7 +52,7 @@ namespace SplitSpheres.Core.Gameplay
                 mr.material = assignedCmColor32.cmColor32Material;
             }
 
-            _canBeSelected = true;
+            CanBeSelected = true;
             rb.isKinematic = false;
         }
 
@@ -55,7 +60,7 @@ namespace SplitSpheres.Core.Gameplay
         {
             mr.material = deactivatedMaterial;
             
-            _canBeSelected = false;
+            CanBeSelected = false;
             rb.isKinematic = true;
         }
         
@@ -64,7 +69,7 @@ namespace SplitSpheres.Core.Gameplay
         /// </summary>
         public void OnSelected()
         {
-            if (!_canBeSelected)
+            if (!CanBeSelected)
             return;
             
             //Sends current position to Vector3EventListeners
@@ -82,6 +87,7 @@ namespace SplitSpheres.Core.Gameplay
         
         public void DestroySelf()
         {
+            onCylDestroyed?.Invoke();
             //TODO: IMPLEMENT HERE DESTRUCTION EVENT LIke SFX AND VIBRAT
             Destroy(this.gameObject);
         }
