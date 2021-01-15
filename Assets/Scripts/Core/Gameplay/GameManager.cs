@@ -31,9 +31,15 @@ namespace SplitSpheres.Core.Gameplay
         public BallThrowableManager ballThrowableManager;
 
         /// <summary>
+        /// The Main Canvas controller
+        /// </summary>
+        public MainCanvasController mainCanvasController;
+        
+        /// <summary>
         /// The Game Canvas Controller
         /// </summary>
         public GameCanvasController gameCanvasController;
+        
         
         /// <summary>
         /// Handles the different GameStates, that control the game flow  -> LevelState, WinState and GameOverState

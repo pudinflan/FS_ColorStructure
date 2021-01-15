@@ -37,6 +37,8 @@ namespace SplitSpheres.Core.GameStates
             GameCanvasController = gameManager.gameCanvasController;
         }
 
+        public GameManager Manager => gameManager;
+
         public void Enter()
         {
             //activate Level object
@@ -63,20 +65,20 @@ namespace SplitSpheres.Core.GameStates
         {
             canLose = false;
             ballThrowableManager.CanThrowNewBall = false;
-            gameManager.GameStateMachine.ChangeState(new WinState());
+            Manager.GameStateMachine.ChangeState(new WinState(this, receivedPreparedLevel.Level));
         }
 
         public void GameOverState()
         {
             if (canLose)
             {
-                gameManager.GameStateMachine.ChangeState(new GameOverState());
+                Manager.GameStateMachine.ChangeState(new GameOverState(this, receivedPreparedLevel.Level));
             }
         }
 
         public void CheckForGameOver()
         {
-            gameManager.StartCoroutine(CheckForGameOverRoutine());
+            Manager.StartCoroutine(CheckForGameOverRoutine());
         }
 
 
@@ -89,7 +91,7 @@ namespace SplitSpheres.Core.GameStates
           
 
             //Starts the level Sequence
-            gameManager.StartCoroutine(ActivateLevelSequence());
+            Manager.StartCoroutine(ActivateLevelSequence());
         }
 
 
@@ -109,7 +111,7 @@ namespace SplitSpheres.Core.GameStates
 
             var numberOfRowsToDeActivate = receivedPreparedLevel.Level.numberOfInactiveRows;
 
-            gameManager.StartCoroutine(InitializeRows(numberOfRowsToDeActivate));
+            Manager.StartCoroutine(InitializeRows(numberOfRowsToDeActivate));
 
             GameCanvasController.TurnOnGameCanvas(true);
             //Initialize BallTrhowable System
