@@ -3,8 +3,8 @@
     "m_SelectedPackage": {
         "deviceId": "ff9aa708",
         "name": "com.FernandoM.Soares.Spheres",
-        "processId": 20740,
-        "exited": false
+        "processId": 11114,
+        "exited": true
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
@@ -24,7 +24,19 @@
             "deviceId": "ff9aa708",
             "name": "com.FernandoM.Soares.Spheres",
             "processId": 20740,
+            "exited": true
+        },
+        {
+            "deviceId": "ff9aa708",
+            "name": "com.miui.home",
+            "processId": 2728,
             "exited": false
+        },
+        {
+            "deviceId": "ff9aa708",
+            "name": "com.FernandoM.Soares.Spheres",
+            "processId": 11114,
+            "exited": true
         }
     ],
     "m_Tags": {
