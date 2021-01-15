@@ -15,7 +15,10 @@ MonoBehaviour:
   levelObject: {fileID: 908298110197351646, guid: a563685d5f6432146af7175fcbf485c3,
     type: 3}
   levelType: 0
-  baseNumberOfBalls: 26
+  baseNumberOfBalls: 35
   baseNumberOfInactiveRows: 12
   colorCollection:
   - {fileID: 11400000, guid: fac9aeb6165f6d14094b759f7615bdbc, type: 2}
+  - {fileID: 11400000, guid: f8fad8abbe2ea9443b4af9c1790f08b2, type: 2}
+  - {fileID: 11400000, guid: 01988033e13666c45b0da87196dcfdd2, type: 2}
+  - {fileID: 11400000, guid: e654d03925dbcc047b6aa2a2b31f7e46, type: 2}
