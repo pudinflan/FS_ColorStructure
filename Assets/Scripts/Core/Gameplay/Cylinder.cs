@@ -107,6 +107,7 @@ namespace SplitSpheres.Core.Gameplay
         /// </summary>
         public void ProcessBallCollision()
         {
+            rb.AddExplosionForce(20, this.transform.position,this.transform.localScale.z, 2f, ForceMode.Impulse);
             ChainableCol.NewChainableCollision(this);
         }
 
